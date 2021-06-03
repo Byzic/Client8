@@ -140,7 +140,8 @@ public class StartMenu extends JPanel {
         chooseLang.setBorder(new EtchedBorder());
         startMenuPanel.add(chooseLang, "cell 4 4,align center center,grow 0 0,width 100:150:250,height 30:35:45");
 
-
-
+    }
+    public JPanel getStartMenuPanel() {
+        return startMenuPanel;
     }
 }
