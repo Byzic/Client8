@@ -1,11 +1,20 @@
 package client.forms;
 
+import client.App;
 import client.Client;
+import common.Request;
+import common.Response;
+import common.ResponseCode;
+import common.User;
 import net.miginfocom.swing.MigLayout;
+import resources.LocaleBundle;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Login extends JPanel {
     private Client client;
@@ -20,16 +29,58 @@ public class Login extends JPanel {
     public Login(Client client) {
         initComponents();
         this.client = client;
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                App.mainFrame.setContentPane(App.startMenu.getStartMenuPanel());
+                App.mainFrame.validate();
+            }
+        });
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    User user = new User(loginField.getText(), String.valueOf(passwordField.getPassword()), null);
+                    client.send(new Request("login","",user));
+                    Response response=client.receive();
+                    if (response.getResponseCode().equals(ResponseCode.OK)) {
+                        client.setUser(user);
+                        App.mainFrame.setContentPane(App.mainMenu.getMainMenuPanel());
+                        App.mainFrame.validate();
+                        App.mainMenu.setUser(user);
+
+
+
+                    }else {
+                        //JOptionPane.showMessageDialog(null, response.localize());
+                    }
+
+                } catch (IOException ex) {
+                    //вывести на экран, что возникла ошибка при отправке запроса на сервер
+                } catch (ClassNotFoundException ex) {
+                    //вывести на экран, что возникла ошибка при получении ответа от сервера
+                }
+
+            }
+        });
+
+    }
+    public void localize() {
+        backButton.setText(LocaleBundle.getCurrentBundle().getString("back_button"));
+        loginButton.setText(LocaleBundle.getCurrentBundle().getString("login_button"));
+        passwordName.setText(LocaleBundle.getCurrentBundle().getString("login_passwordName"));
+        loginName.setText(LocaleBundle.getCurrentBundle().getString("login_loginName"));
+        name.setText(LocaleBundle.getCurrentBundle().getString("login_name"));
     }
     private void initComponents(){
         loginPanel = new JPanel();
-        name = new JLabel();
-        loginName = new JLabel();
-        loginField = new JTextField();
-        passwordName = new JLabel();
-        passwordField = new JPasswordField();
-        loginButton = new JButton();
-        backButton = new JButton();
+        name = new JLabel();                                      //Вход в бд
+        loginName = new JLabel();                                 //логин
+        loginField = new JTextField();                            //поле ввода логина
+        passwordName = new JLabel();                              //пароль
+        passwordField = new JPasswordField();                     //поле ввода пароля
+        loginButton = new JButton();                              //кнопка войти
+        backButton = new JButton();                               //кнопка назад
         //======== loginPanel ========
         loginPanel.setBackground(new Color(225, 183, 144));
         loginPanel.setLayout(new MigLayout(
@@ -55,7 +106,7 @@ public class Login extends JPanel {
                         "[110,grow,fill]"));
 
         //---- name ----
-        name.setText("\u0412\u0445\u043e\u0434");
+        name.setText("Вход");
         name.setHorizontalAlignment(SwingConstants.CENTER);
         name.setFont(new Font("Arial Black", Font.BOLD, 40));
         name.setBackground(new Color(255, 102, 102));
@@ -63,7 +114,7 @@ public class Login extends JPanel {
         loginPanel.add(name, "cell 4 0,align center center,grow 0 0");
 
         //---- loginName ----
-        loginName.setText("\u041b\u043e\u0433\u0438\u043d");
+        loginName.setText("Логин:");
         loginName.setHorizontalAlignment(SwingConstants.CENTER);
         loginName.setForeground(Color.black);
         loginName.setFont(new Font("Arial", Font.BOLD, 16));
@@ -74,7 +125,7 @@ public class Login extends JPanel {
         loginPanel.add(loginField, "cell 4 2,alignx center,growx 0,width 100:200:250");
 
         //---- passwordName ----
-        passwordName.setText("\u041f\u0430\u0440\u043e\u043b\u044c");
+        passwordName.setText("Пароль:");
         passwordName.setHorizontalAlignment(SwingConstants.CENTER);
         passwordName.setForeground(Color.black);
         passwordName.setFont(new Font("Arial", Font.BOLD, 16));
@@ -85,16 +136,16 @@ public class Login extends JPanel {
         loginPanel.add(passwordField, "cell 4 4,alignx center,growx 0,width 100:200:250");
 
         //---- loginButton ----
-        loginButton.setText("\u0412\u043e\u0439\u0442\u0438");
-        loginButton.setFont(new Font("Arial", Font.PLAIN, 12));
+        loginButton.setText("Войти");
+        loginButton.setFont(new Font("Arial", Font.PLAIN, 20));
         loginButton.setBorder(new EtchedBorder());
         loginButton.setBackground(new Color(40, 61, 82));
         loginButton.setForeground(Color.white);
         loginPanel.add(loginButton, "cell 4 5,align center center,grow 0 0,width 100:150:250,height 30:35:45");
 
         //---- backButton ----
-        backButton.setText("\u041d\u0430\u0437\u0430\u0434");
-        backButton.setFont(new Font("Arial", Font.PLAIN, 12));
+        backButton.setText("Назад");
+        backButton.setFont(new Font("Arial", Font.PLAIN, 20));
         backButton.setBorder(new EtchedBorder());
         backButton.setBackground(new Color(40, 61, 82));
         backButton.setForeground(Color.white);

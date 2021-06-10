@@ -1,11 +1,22 @@
 package client.forms;
 
+import client.App;
 import client.Client;
+import common.Request;
+import common.Response;
+import common.ResponseCode;
+import common.User;
 import net.miginfocom.swing.MigLayout;
+import resources.LocaleBundle;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.Locale;
+import java.util.Random;
 
 public class Register extends JPanel {
     private JPanel registerPanel;
@@ -19,10 +30,58 @@ public class Register extends JPanel {
     private JButton registerButton;
     private JButton backButton;
     private Client client;
-}
+
     public Register(Client client) {
         initComponents();
         this.client = client;
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                App.mainFrame.setContentPane(App.startMenu.getStartMenuPanel());
+                App.mainFrame.validate();
+            }
+        });
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+
+                    Random rand = new Random();
+                    int redValue = rand.nextInt(255);
+                    int greenValue = rand.nextInt(255);
+                    int blueValue = rand.nextInt(255);
+                    Color clr = new Color(redValue, greenValue, blueValue);
+                    String hex = "0x" + Integer.toHexString(clr.getRGB()).substring(2).toUpperCase(Locale.ROOT);
+                    User user = new User(loginField.getText(), String.valueOf(passwordField.getPassword()), null);
+                    client.send(new Request("registr","",user));
+                    Response response=client.receive();
+                    if (response.getResponseCode().equals(ResponseCode.OK)) {
+                        client.setUser(user);
+                        App.mainFrame.setContentPane(App.mainMenu.getMainMenuPanel());
+                        App.mainFrame.validate();
+                        App.mainMenu.setUser(user);
+
+
+
+                    }else {
+                        //JOptionPane.showMessageDialog(null, response.localize());
+                    }
+
+                } catch (IOException ex) {
+                    //вывести на экран, что возникла ошибка при отправке запроса на сервер
+                } catch (ClassNotFoundException ex) {
+                    //вывести на экран, что возникла ошибка при получении ответа от сервера
+                }
+            }
+        });
+    }
+    public void localize() {
+        backButton.setText(LocaleBundle.getCurrentBundle().getString("back_button"));
+        registerButton.setText(LocaleBundle.getCurrentBundle().getString("registration"));
+        passwordName.setText(LocaleBundle.getCurrentBundle().getString("register_passwordName"));
+        confirmPassword.setText(LocaleBundle.getCurrentBundle().getString("register_confirmPassword"));
+        loginName.setText(LocaleBundle.getCurrentBundle().getString("register_loginName"));
+        name.setText(LocaleBundle.getCurrentBundle().getString("registration"));
     }
     private void initComponents(){
         registerPanel = new JPanel();

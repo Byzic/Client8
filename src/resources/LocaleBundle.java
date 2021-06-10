@@ -3,10 +3,10 @@ package resources;
 import java.util.ResourceBundle;
 
 public class LocaleBundle {
-    private static ResourceBundle bundle_en = ResourceBundle.getBundle("resources.Resource_en");
+    private static ResourceBundle bundle_ma = ResourceBundle.getBundle("resources.Resource_ma");
     private static ResourceBundle bundle_ru = ResourceBundle.getBundle("resources.Resource_ru");
-    private static ResourceBundle bundle_sv = ResourceBundle.getBundle("resources.Resource_sv");
-    private static ResourceBundle bundle_uk = ResourceBundle.getBundle("resources.Resource_uk");
+    private static ResourceBundle bundle_pol = ResourceBundle.getBundle("resources.Resource_pol");
+    private static ResourceBundle bundle_esp = ResourceBundle.getBundle("resources.Resource_esp");
 
     private static ResourceBundle currentBundle = bundle_ru;
 
@@ -15,14 +15,14 @@ public class LocaleBundle {
             case "Russian":
                 currentBundle = bundle_ru;
                 break;
-            case "English(USA)":
-                currentBundle = bundle_en;
+            case "Македонски":
+                currentBundle = bundle_ma;
                 break;
-            case "Slovenian":
-                currentBundle = bundle_sv;
+            case "Polski":
+                currentBundle = bundle_pol;
                 break;
-            case "Ukranian":
-                currentBundle = bundle_uk;
+            case "Español":
+                currentBundle = bundle_esp;
                 break;
         }
     }

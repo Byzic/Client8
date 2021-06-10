@@ -6,10 +6,12 @@ import java.util.Objects;
 public class User implements Serializable {
     private String login;
     private String password;
+    private String color;
 
-    public User(String login, String password) {
+    public User(String login, String password,String color) {
         this.login = login;
         this.password = password;
+        this.color=color;
     }
 
     public String getLogin() {
@@ -18,6 +20,9 @@ public class User implements Serializable {
 
     public String getPassword() {
         return password;
+    }
+    public String getColor() {
+        return color;
     }
     @Override
     public boolean equals(Object o) {
