@@ -32,8 +32,8 @@ public class StartMenu extends JPanel {
                 LocaleBundle.setBundle(String.valueOf(e.getItem()));
                 localize();
                 App.login.localize();
-                //App.mainMenu.localize();
-                //App.register.localize();
+                App.insert.localize();
+                App.register.localize();
 
             }
         });
@@ -75,7 +75,7 @@ public class StartMenu extends JPanel {
         chooseLang = new JComboBox<>();
 
         //======== startMenuPanel ========
-        startMenuPanel.setBackground(new Color(172, 215, 230));
+        startMenuPanel.setBackground(new Color(148, 204, 227));
         //startMenuPanel.setBackground(new Color(188, 143, 143));
         startMenuPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
                 javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax
@@ -109,43 +109,44 @@ public class StartMenu extends JPanel {
         name.setHorizontalAlignment(SwingConstants.CENTER);
         name.setFont(new Font("Arial",Font.BOLD, 70));
         //name.setFont(new Font("Arial Black", Font.BOLD, 40));
-        name.setBackground(new Color(212, 159, 68));
-        name.setForeground(new Color(225, 183, 144));
+        name.setBackground(new Color(194, 103, 160));
+        name.setForeground(new Color(194, 103, 160));
         startMenuPanel.add(name, "cell 4 0,align center center,grow 0 0");
         //---- loginButton ----
         loginButton.setText("\u0412\u043e\u0439\u0442\u0438");
-        loginButton.setFont(new Font("Arial", Font.PLAIN, 20));
-        loginButton.setBackground(new Color(225, 183, 144));
+
+        loginButton.setFont(new Font("Arial", Font.PLAIN, 25));
+        loginButton.setBackground(new Color(196, 116, 161));
         loginButton.setForeground(new Color(40, 61, 82));
-        loginButton.setBorder(new EtchedBorder());
+        loginButton.setBorder(new RoundedBorder(15,new Color(161, 35, 106)));
         startMenuPanel.add(loginButton, "cell 4 1,align center center,grow 0 0,width 100:150:250,height 30:35:45");
 
         //---- registerButton ----
         registerButton.setText("\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f");
-        registerButton.setFont(new Font("Arial", Font.PLAIN, 20));
-        registerButton.setBackground(new Color(225, 183, 144));
+        registerButton.setFont(new Font("Arial", Font.PLAIN, 25));
+        registerButton.setBackground(new Color(196, 116, 161));
         registerButton.setForeground(new Color(40, 61, 82));
-        registerButton.setBorder(new EtchedBorder());
+        registerButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
         startMenuPanel.add(registerButton, "cell 4 2,align center center,grow 0 0,width 100:150:250,height 30:35:45");
 
         //---- exitButton ----
         exitButton.setText("\u0417\u0430\u043a\u0440\u044b\u0442\u044c");
-        exitButton.setFont(new Font("Arial", Font.PLAIN, 20));
-        exitButton.setBackground(new Color(225, 183, 144));
+        exitButton.setFont(new Font("Arial", Font.PLAIN, 25));
+        exitButton.setBackground(new Color(196, 116, 161));
         exitButton.setForeground(new Color(40, 61, 82));
-        exitButton.setBorder(new EtchedBorder());
+        exitButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
         startMenuPanel.add(exitButton, "cell 4 3,align center center,grow 0 0,width 100:150:250,height 30:35:45");
 
         chooseLang.setModel(new DefaultComboBoxModel<>(new String[] {
-                "Russian",
+                "Русский",
                 "Македонски",
                 "Polski",
                 "Español"
         }));
-        chooseLang.setBackground(new Color(225, 183, 144));
+        chooseLang.setBackground(new Color(207, 176, 193));
         chooseLang.setForeground(new Color(40, 61, 82));
-        chooseLang.setFont(new Font("Arial", Font.PLAIN, 20));
-        chooseLang.setBorder(new EtchedBorder());
+        chooseLang.setFont(new Font("Arial", Font.PLAIN, 18));
+        chooseLang.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
         startMenuPanel.add(chooseLang, "cell 4 4,align center center,grow 0 0,width 100:150:250,height 30:35:45");
 
     }

@@ -96,7 +96,7 @@ public class Register extends JPanel {
         backButton = new JButton();
 
         //======== registerPanel ========
-        registerPanel.setBackground(new Color(225, 183, 144));
+        registerPanel.setBackground(new Color(168, 128, 146));
         registerPanel.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
                 swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border
                 . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog"
@@ -133,13 +133,13 @@ public class Register extends JPanel {
         name.setHorizontalAlignment(SwingConstants.CENTER);
         name.setFont(new Font("Arial Black", Font.BOLD, 40));
         name.setBackground(new Color(255, 102, 102));
-        name.setForeground(new Color(40, 61, 82));
+        name.setForeground(new Color(148, 201, 242));
         registerPanel.add(name, "cell 4 0,align center center,grow 0 0");
 
         //---- loginName ----
         loginName.setText("\u041b\u043e\u0433\u0438\u043d");
         loginName.setHorizontalAlignment(SwingConstants.CENTER);
-        loginName.setForeground(Color.black);
+        loginName.setForeground(new Color(40, 61, 82));
         loginName.setFont(new Font("Arial", Font.BOLD, 16));
         registerPanel.add(loginName, "cell 4 1");
 
@@ -150,7 +150,7 @@ public class Register extends JPanel {
         //---- passwordName ----
         passwordName.setText("\u041f\u0430\u0440\u043e\u043b\u044c");
         passwordName.setHorizontalAlignment(SwingConstants.CENTER);
-        passwordName.setForeground(Color.black);
+        passwordName.setForeground(new Color(40, 61, 82));
         passwordName.setFont(new Font("Arial", Font.BOLD, 16));
         registerPanel.add(passwordName, "cell 4 3");
 
@@ -161,7 +161,7 @@ public class Register extends JPanel {
         //---- confirmPassword ----
         confirmPassword.setText("\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u0435 \u043f\u0430\u0440\u043e\u043b\u044f");
         confirmPassword.setHorizontalAlignment(SwingConstants.CENTER);
-        confirmPassword.setForeground(Color.black);
+        confirmPassword.setForeground(new Color(40, 61, 82));
         confirmPassword.setFont(new Font("Arial", Font.BOLD, 16));
         registerPanel.add(confirmPassword, "cell 4 5");
 
@@ -171,18 +171,18 @@ public class Register extends JPanel {
 
         //---- registerButton ----
         registerButton.setText("\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f");
-        registerButton.setFont(new Font("Arial", Font.PLAIN, 12));
-        registerButton.setBorder(new EtchedBorder());
-        registerButton.setBackground(new Color(40, 61, 82));
-        registerButton.setForeground(Color.white);
+        registerButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        registerButton.setBorder(new RoundedBorder(10,new Color(66,161,235)));
+        registerButton.setBackground(new Color(148, 201, 242));
+        registerButton.setForeground(new Color(40, 61, 82));
         registerPanel.add(registerButton, "cell 4 7,align center center,grow 0 0,width 100:150:250,height 30:35:45");
 
         //---- backButton ----
         backButton.setText("\u041d\u0430\u0437\u0430\u0434");
-        backButton.setFont(new Font("Arial", Font.PLAIN, 12));
-        backButton.setBorder(new EtchedBorder());
-        backButton.setBackground(new Color(40, 61, 82));
-        backButton.setForeground(Color.white);
+        backButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        backButton.setBorder(new RoundedBorder(10,new Color(66,161,235)));
+        backButton.setBackground(new Color(148, 201, 242));
+        backButton.setForeground(new Color(40, 61, 82));
         registerPanel.add(backButton, "cell 4 8,align center center,grow 0 0,width 100:150:250,height 30:35:45");
     }
     public JPanel getRegisterPanel() {

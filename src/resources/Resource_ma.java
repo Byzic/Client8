@@ -20,6 +20,9 @@ public class Resource_ma extends ListResourceBundle {
                     {"register_loginName", "Логирај Се"},
 
 
+                    {"UserIsNotFoundException", "Неточни корисничко име или лозинка"},
+
+
                     //{"login_loginName", "Логин"},
                     //{"login_loginName", "Логин"},
                     //{"login_loginName", "Логин"},

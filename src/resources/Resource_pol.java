@@ -19,6 +19,8 @@ public class Resource_pol extends ListResourceBundle {
                     {"register_confirmPassword", "Potwierdzenie hasła"},
                     {"register_loginName", "Zaloguj sie"},
 
+                    {"UserIsNotFoundException", "Niepoprawna nazwa użytkownika lub hasło"},
+
 
                     //{"login_loginName", "Логин"},
                     //{"login_loginName", "Логин"},

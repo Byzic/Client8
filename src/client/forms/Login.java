@@ -2,6 +2,7 @@ package client.forms;
 
 import client.App;
 import client.Client;
+import client.utility.PasswordHasher;
 import common.Request;
 import common.Response;
 import common.ResponseCode;
@@ -40,18 +41,17 @@ public class Login extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    User user = new User(loginField.getText(), String.valueOf(passwordField.getPassword()), null);
+                    User user = new User(loginField.getText(), PasswordHasher.hashPassword(String.valueOf(passwordField.getPassword())+"!!!(*_*)!!!"), null);
                     client.send(new Request("login","",user));
                     Response response=client.receive();
                     if (response.getResponseCode().equals(ResponseCode.OK)) {
                         client.setUser(user);
+                        App.mainMenu.setUser(user);
                         App.mainFrame.setContentPane(App.mainMenu.getMainMenuPanel());
                         App.mainFrame.validate();
-                        App.mainMenu.setUser(user);
-
-
 
                     }else {
+                        JOptionPane.showMessageDialog(null, response.getResponseBody());
                         //JOptionPane.showMessageDialog(null, response.localize());
                     }
 
@@ -82,7 +82,7 @@ public class Login extends JPanel {
         loginButton = new JButton();                              //кнопка войти
         backButton = new JButton();                               //кнопка назад
         //======== loginPanel ========
-        loginPanel.setBackground(new Color(225, 183, 144));
+        loginPanel.setBackground(new Color(168, 128, 146));
         loginPanel.setLayout(new MigLayout(
                 "insets 0,hidemode 3",
                 // columns
@@ -110,14 +110,14 @@ public class Login extends JPanel {
         name.setHorizontalAlignment(SwingConstants.CENTER);
         name.setFont(new Font("Arial Black", Font.BOLD, 40));
         name.setBackground(new Color(255, 102, 102));
-        name.setForeground(new Color(40, 61, 82));
+        name.setForeground(new Color(148, 201, 242));
         loginPanel.add(name, "cell 4 0,align center center,grow 0 0");
 
         //---- loginName ----
         loginName.setText("Логин:");
         loginName.setHorizontalAlignment(SwingConstants.CENTER);
-        loginName.setForeground(Color.black);
-        loginName.setFont(new Font("Arial", Font.BOLD, 16));
+        loginName.setForeground(new Color(40, 61, 82));
+        loginName.setFont(new Font("Arial", Font.BOLD, 20));
         loginPanel.add(loginName, "cell 4 1");
 
         //---- loginField ----
@@ -127,8 +127,8 @@ public class Login extends JPanel {
         //---- passwordName ----
         passwordName.setText("Пароль:");
         passwordName.setHorizontalAlignment(SwingConstants.CENTER);
-        passwordName.setForeground(Color.black);
-        passwordName.setFont(new Font("Arial", Font.BOLD, 16));
+        passwordName.setForeground(new Color(40, 61, 82));
+        passwordName.setFont(new Font("Arial", Font.BOLD, 20));
         loginPanel.add(passwordName, "cell 4 3");
 
         //---- passwordField ----
@@ -138,17 +138,17 @@ public class Login extends JPanel {
         //---- loginButton ----
         loginButton.setText("Войти");
         loginButton.setFont(new Font("Arial", Font.PLAIN, 20));
-        loginButton.setBorder(new EtchedBorder());
-        loginButton.setBackground(new Color(40, 61, 82));
-        loginButton.setForeground(Color.white);
+        loginButton.setBorder(new RoundedBorder(10,new Color(66,161,235)));
+        loginButton.setBackground(new Color(148, 201, 242));
+        loginButton.setForeground(new Color(40, 61, 82));
         loginPanel.add(loginButton, "cell 4 5,align center center,grow 0 0,width 100:150:250,height 30:35:45");
 
         //---- backButton ----
         backButton.setText("Назад");
         backButton.setFont(new Font("Arial", Font.PLAIN, 20));
-        backButton.setBorder(new EtchedBorder());
-        backButton.setBackground(new Color(40, 61, 82));
-        backButton.setForeground(Color.white);
+        backButton.setBorder(new RoundedBorder(10,new Color(66,161,235)));
+        backButton.setBackground(new Color(148, 201, 242));
+        backButton.setForeground(new Color(40, 61, 82));
         loginPanel.add(backButton, "cell 4 6,align center center,grow 0 0,width 100:150:250,height 30:35:45");
 
     }

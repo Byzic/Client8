@@ -7,6 +7,10 @@ public class User implements Serializable {
     private String login;
     private String password;
     private String color;
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
 
     public User(String login, String password,String color) {
         this.login = login;

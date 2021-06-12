@@ -19,7 +19,7 @@ public class Resource_ru extends ListResourceBundle {
                     {"register_loginName", "Логин"},
 
 
-                    //{"login_loginName", "Логин"},
+                    {"UserIsNotFoundException", "Неправильное имя пользователя или пароль"},
                     //{"login_loginName", "Логин"},
                     //{"login_loginName", "Логин"},
 

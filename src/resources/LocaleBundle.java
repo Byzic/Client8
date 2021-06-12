@@ -12,7 +12,7 @@ public class LocaleBundle {
 
     public static void setBundle(String lang) {
         switch (lang) {
-            case "Russian":
+            case "Русский":
                 currentBundle = bundle_ru;
                 break;
             case "Македонски":

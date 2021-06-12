@@ -17,7 +17,9 @@ public class Resource_esp extends ListResourceBundle {
 
                     {"register_passwordName", "Contraseña"},
                     {"register_confirmPassword", "confirmación de contraseña"},
-                    {"register_loginName", "Acceso"}
+                    {"register_loginName", "Acceso"},
+
+                    {"UserIsNotFoundException", "Nombre de usuario o contraseña incorrectos"},
 
 
                     //{"login_loginName", "Логин"},
