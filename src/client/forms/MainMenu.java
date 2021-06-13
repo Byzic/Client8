@@ -102,7 +102,7 @@ public class MainMenu extends JPanel {
         helpButton=new JButton();
         infoButton=new JButton();
         insertButton=new JButton();
-        mainMenuPanel.setBackground(new Color(148, 201, 242));
+        mainMenuPanel.setBackground(new Color(148, 204, 227));
         mainMenuPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
                 EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
                 .border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),
@@ -134,7 +134,7 @@ public class MainMenu extends JPanel {
         //---- name ----
         name.setText("Flat");
         name.setHorizontalAlignment(SwingConstants.CENTER);
-        name.setFont(new Font("Arial",Font.BOLD, 70));
+        name.setFont(new Font("Arial",Font.BOLD, 50));
         name.setBackground(new Color(255, 102, 102));
         name.setForeground(Color.WHITE);
         mainMenuPanel.add(name, "cell 2 0 4 1,align center center,grow 0 0");

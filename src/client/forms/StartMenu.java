@@ -77,13 +77,13 @@ public class StartMenu extends JPanel {
         //======== startMenuPanel ========
         startMenuPanel.setBackground(new Color(148, 204, 227));
         //startMenuPanel.setBackground(new Color(188, 143, 143));
-        startMenuPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
+        /*startMenuPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new
                 javax.swing.border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax
                 .swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,new java
                 .awt.Font("Dialo\u0067",java.awt.Font.BOLD,12),java.awt
                 .Color.red),startMenuPanel. getBorder()));startMenuPanel. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("borde\u0072".
                 equals(e.getPropertyName()))throw new RuntimeException();}});
-        startMenuPanel.setLayout(new MigLayout(
+        */startMenuPanel.setLayout(new MigLayout(
                 "insets 0,hidemode 3",
                 // columns
                 "[fill]" +

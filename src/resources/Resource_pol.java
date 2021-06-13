@@ -21,6 +21,34 @@ public class Resource_pol extends ListResourceBundle {
 
                     {"UserIsNotFoundException", "Niepoprawna nazwa użytkownika lub hasło"},
 
+                    {"flatName", "Właściciel mieszkania"},
+                    {"xyLable", "Lokalizacja"},
+                    {"areaLable", "area"},
+                    {"numberLable", "Liczba pokoi"},
+                    {"furnishLable", "Finish"},
+                    {"viewLable", "Widok okna"},
+                    {"transportLable", "Numer transportu"},
+                    {"nameHouse", "Złożona nazwa"},
+                    {"yearHouse", "Ile lat temu oddano do użytku"},
+                    {"floorHouse", "Liczba pięter w domu"},
+                    {"insertButton", "Utwórz"},
+                    {"keyLable", "Key"},
+
+                    {"Exception1", "Kluczem jest liczba całkowita"},
+                    {"Exception2", "Klucz musi być większy niż 0"},
+                    {"Exception3", "Nazwa nie może być pustym ciągiem"},
+                    {"Exception4", "Powierzchnia jest liczba"},
+                    {"Exception5", "Powierzchnia może wynosić od 0 do 741"},
+                    {"Exception6", "Rok ukończenia i liczba pięter w domu jest liczbą całkowitą"},
+                    {"Exception7", "Złożona nazwa nie może być pustym ciągiem"},
+                    {"Exception8", "Pole z rokiem ukończenia domu może mieć wartość od 0 do 846"},
+                    {"Exception9", "Liczba pięter w domu musi być większa niż 0"},
+                    {"Exception10", "Współrzędne muszą być liczbą"},
+                    {"Exception11", "Współrzędna x musi być większa niż -107"},
+                    {"Exception12", "Liczba pokoi nie może być ciągiem"},
+                    {"Exception13", "liczba pokoi może wynosić od 0 do 11"},
+
+
 
                     //{"login_loginName", "Логин"},
                     //{"login_loginName", "Логин"},

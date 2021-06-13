@@ -122,6 +122,8 @@ public class Login extends JPanel {
 
         //---- loginField ----
         loginField.setBackground(Color.white);
+        loginField.setFont(new Font("Arial", Font.BOLD, 20));
+        loginField.setForeground(new Color(40, 61, 82));
         loginPanel.add(loginField, "cell 4 2,alignx center,growx 0,width 100:200:250");
 
         //---- passwordName ----
@@ -133,6 +135,8 @@ public class Login extends JPanel {
 
         //---- passwordField ----
         passwordField.setBackground(Color.white);
+        passwordField.setFont(new Font("Arial", Font.BOLD, 20));
+        passwordField.setForeground(new Color(40, 61, 82));
         loginPanel.add(passwordField, "cell 4 4,alignx center,growx 0,width 100:200:250");
 
         //---- loginButton ----

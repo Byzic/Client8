@@ -18,7 +18,7 @@ public class App {
         register = new Register(client);
         insert=new Insert(client);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(1000, 700);
+        mainFrame.setSize(1100, 700);
         startMenu = new StartMenu(client);
         mainMenu=new MainMenu(client);
         mainFrame.setContentPane(startMenu.getStartMenuPanel());
