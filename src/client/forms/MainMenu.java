@@ -32,6 +32,7 @@ public class MainMenu extends JPanel {
     private JButton updateButton;
     private JButton clearButton;
     private JButton replaceIfGreaterButton;
+    private JButton replaceIfLowerButton;
 
 
 
@@ -134,6 +135,13 @@ public class MainMenu extends JPanel {
                 App.mainFrame.validate();
             }
         });
+        replaceIfLowerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                App.mainFrame.setContentPane(App.replacel.getReplaceGPanel());
+                App.mainFrame.validate();
+            }
+        });
         infoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -179,6 +187,7 @@ public class MainMenu extends JPanel {
         updateButton=new JButton();
         clearButton=new JButton();
         replaceIfGreaterButton=new JButton();
+        replaceIfLowerButton=new JButton();
         mainMenuPanel.setBackground(new Color(148, 204, 227));
         mainMenuPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
                 EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
@@ -257,6 +266,13 @@ public class MainMenu extends JPanel {
         replaceIfGreaterButton.setBackground(new Color(196, 116, 161));
         replaceIfGreaterButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
         mainMenuPanel.add(replaceIfGreaterButton, "cell 4 6");
+        //-----replaceIfLowerButton-----
+        replaceIfLowerButton.setText("replace_if_lower");
+        replaceIfLowerButton.setForeground(new Color(40, 61, 82));
+        replaceIfLowerButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        replaceIfLowerButton.setBackground(new Color(196, 116, 161));
+        replaceIfLowerButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
+        mainMenuPanel.add(replaceIfLowerButton, "cell 3 6");
         //-----infoButton-----
         infoButton.setText("info");
         infoButton.setForeground(new Color(40, 61, 82));

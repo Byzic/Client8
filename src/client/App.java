@@ -13,6 +13,7 @@ public class App {
     public static Insert insert;
     public static Update update;
     public static ReplaceIfGreater replaceg;
+    public static ReplaceIfLower replacel;
 
     public static void main(String[] args) {
         Client client = new Client("localhost", 8088);
@@ -21,6 +22,7 @@ public class App {
         insert=new Insert(client);
         update=new Update(client);
         replaceg=new ReplaceIfGreater(client);
+        replacel=new ReplaceIfLower(client);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(1200, 800);
         startMenu = new StartMenu(client);
