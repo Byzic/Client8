@@ -33,6 +33,8 @@ public class Resource_esp extends ListResourceBundle {
                     {"floorHouse", "Número de pisos de la casa"},
                     {"insertButton", "Create"},
                     {"keyLable", "Key"},
+                    {"idLable", "id"},
+                    {"updateButton", "Cambiar"},
 
                     {"Exception1", "La clave es un número entero"},
                     {"Exception2", "La clave debe ser mayor que 0"},
@@ -47,6 +49,8 @@ public class Resource_esp extends ListResourceBundle {
                     {"Exception11", "La coordenada x debe ser mayor que -107"},
                     {"Exception12", "Number of rooms can't be string"},
                     {"Exception13", "el número de habitaciones puede oscilar entre 0 y 11"},
+                    {"Exception14", "Id debe ser un número entero"},
+                    {"Exception15", "Id debe ser mayor que 0"},
 
                     //{"login_loginName", "Логин"},
                     //{"login_loginName", "Логин"},

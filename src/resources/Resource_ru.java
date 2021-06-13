@@ -33,7 +33,10 @@ public class Resource_ru extends ListResourceBundle {
                     {"yearHouse", "Сколько лет назад был сдан"},
                     {"floorHouse", "Количество этажей в доме"},
                     {"insertButton", "Создать"},
+                    {"updateButton", "Изменить"},
                     {"keyLable", "Ключ"},
+                    {"idLable", "id"},
+
 
 
                     {"Exception1", "Ключ должен быть целым числом"},
@@ -49,6 +52,8 @@ public class Resource_ru extends ListResourceBundle {
                     {"Exception11", "Координата x должна быть больше -107"},
                     {"Exception12", "Количество комнат не может быть строкой"},
                     {"Exception13", "количество комнат может быть в диапазоне от 0 до 11"},
+                    {"Exception14", "Id должно быть целым числом"},
+                    {"Exception15", "Id должно быть больше 0"},
 
 
 

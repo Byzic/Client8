@@ -34,6 +34,8 @@ public class Resource_ma extends ListResourceBundle {
                     {"floorHouse", "Број на подови во куќата"},
                     {"insertButton", "Создади"},
                     {"keyLable", "Key"},
+                    {"idLable", "id"},
+                    {"updateButton", "Change"},
 
 
                     {"Exception1", "Клучот е цел број"},
@@ -49,6 +51,8 @@ public class Resource_ma extends ListResourceBundle {
                     {"Exception11", "X coordinate мора да биде поголема од -107"},
                     {"Exception12", "Број на соби не може да биде низа"},
                     {"Exception13", "бројот на соби може да се движи од 0 до 11"},
+                    {"Exception14", "Id мора да биде цел број"},
+                    {"Exception15", "Id мора да биде поголем од 0"},
 
 
                     //{"login_loginName", "Логин"},

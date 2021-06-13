@@ -33,6 +33,8 @@ public class Resource_pol extends ListResourceBundle {
                     {"floorHouse", "Liczba pięter w domu"},
                     {"insertButton", "Utwórz"},
                     {"keyLable", "Key"},
+                    {"idLable", "id"},
+                    {"updateButton", "Zmień"},
 
                     {"Exception1", "Kluczem jest liczba całkowita"},
                     {"Exception2", "Klucz musi być większy niż 0"},
@@ -47,6 +49,8 @@ public class Resource_pol extends ListResourceBundle {
                     {"Exception11", "Współrzędna x musi być większa niż -107"},
                     {"Exception12", "Liczba pokoi nie może być ciągiem"},
                     {"Exception13", "liczba pokoi może wynosić od 0 do 11"},
+                    {"Exception14", "Id musi być liczbą całkowitą"},
+                    {"Exception15", "Id musi być większy niż 0"},
 
 
 

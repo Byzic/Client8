@@ -29,6 +29,7 @@ public class MainMenu extends JPanel {
     private JButton infoButton;
     private JButton insertButton;
     private JButton remove_keyButton;
+    private JButton updateButton;
 
 
     public void setUser(User user){
@@ -99,6 +100,13 @@ public class MainMenu extends JPanel {
 
             }
         });
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                App.mainFrame.setContentPane(App.update.getUpdatePanel());
+                App.mainFrame.validate();
+            }
+        });
         infoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -141,6 +149,7 @@ public class MainMenu extends JPanel {
         infoButton=new JButton();
         insertButton=new JButton();
         remove_keyButton=new JButton();
+        updateButton=new JButton();
         mainMenuPanel.setBackground(new Color(148, 204, 227));
         mainMenuPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
                 EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
@@ -191,6 +200,13 @@ public class MainMenu extends JPanel {
         insertButton.setBackground(new Color(196, 116, 161));
         insertButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
         mainMenuPanel.add(insertButton, "cell 3 2");
+        //-----updateButton-----
+        updateButton.setText("update_id");
+        updateButton.setForeground(new Color(40, 61, 82));
+        updateButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        updateButton.setBackground(new Color(196, 116, 161));
+        updateButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
+        mainMenuPanel.add(updateButton, "cell 4 2");
         //-----remove_keyButton----
         remove_keyButton.setText("remove_key");
         remove_keyButton.setForeground(new Color(40, 61, 82));
