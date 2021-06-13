@@ -33,6 +33,7 @@ public class MainMenu extends JPanel {
     private JButton clearButton;
     private JButton replaceIfGreaterButton;
     private JButton replaceIfLowerButton;
+    private JButton lowerKeyButton;
 
 
 
@@ -142,6 +143,39 @@ public class MainMenu extends JPanel {
                 App.mainFrame.validate();
             }
         });
+        lowerKeyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                StringBuilder errors=new StringBuilder();
+                try{
+                    Integer key;
+                    lable.setText(LocaleBundle.getCurrentBundle().getString("lowerKey?"));
+                    String str=JOptionPane.showInputDialog(lable);
+                    if (str.isEmpty()) throw new NullPointerException();
+                    key=Integer.parseInt(str);
+                    if (key <= 0) throw new IncorrectValueException();
+                    client.send(new Request("remove_lower_key",key.toString(),client.getUser()));
+                    Response response=client.receive();
+                    lable.setText(response.getResponseBody());
+                    JOptionPane.showMessageDialog(null, lable);
+                } catch (NumberFormatException exception) {
+                    errors.append(LocaleBundle.getCurrentBundle().getString("Exception1")+"\n");
+                    lable.setText(errors.toString());
+                    JOptionPane.showMessageDialog(null, lable);
+                } catch (IncorrectValueException notDeclaredValueException) {
+                    errors.append(LocaleBundle.getCurrentBundle().getString("Exception2")+"\n");
+                    lable.setText(errors.toString());
+                    JOptionPane.showMessageDialog(null, lable);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }catch (NullPointerException ex){
+
+                }
+
+            }
+        });
         infoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -186,6 +220,7 @@ public class MainMenu extends JPanel {
         remove_keyButton=new JButton();
         updateButton=new JButton();
         clearButton=new JButton();
+        lowerKeyButton=new JButton();
         replaceIfGreaterButton=new JButton();
         replaceIfLowerButton=new JButton();
         mainMenuPanel.setBackground(new Color(148, 204, 227));
@@ -273,6 +308,13 @@ public class MainMenu extends JPanel {
         replaceIfLowerButton.setBackground(new Color(196, 116, 161));
         replaceIfLowerButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
         mainMenuPanel.add(replaceIfLowerButton, "cell 3 6");
+        //-----lowerKeyButton-----
+        lowerKeyButton.setText("remove_lower_key");
+        lowerKeyButton.setForeground(new Color(40, 61, 82));
+        lowerKeyButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        lowerKeyButton.setBackground(new Color(196, 116, 161));
+        lowerKeyButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
+        mainMenuPanel.add(lowerKeyButton, "cell 3 8");
         //-----infoButton-----
         infoButton.setText("info");
         infoButton.setForeground(new Color(40, 61, 82));

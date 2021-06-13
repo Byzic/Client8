@@ -38,6 +38,7 @@ public class Resource_ma extends ListResourceBundle {
                     {"updateButton", "Change"},
 
                     {"removeKey?", "Внесете го клучот од станот што сакате да го отстраните"},
+                    {"lowerKey?", "Внесете го клучот (сите станови со помал клуч ќе бидат избришани)"},
 
 
                     {"Exception1", "Клучот е цел број"},

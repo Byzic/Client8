@@ -38,6 +38,7 @@ public class Resource_ru extends ListResourceBundle {
                     {"idLable", "id"},
 
                     {"removeKey?", "Введите ключ квартиры, которую хотите удалить"},
+                    {"lowerKey?", "Введите ключ(все квартиры с меньшим ключом будут удалены)"},
 
 
 
