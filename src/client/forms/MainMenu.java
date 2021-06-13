@@ -30,19 +30,22 @@ public class MainMenu extends JPanel {
     private JButton insertButton;
     private JButton remove_keyButton;
     private JButton updateButton;
+    private JButton clearButton;
 
 
     public void setUser(User user){
         this.user=user;
     }
     public MainMenu(Client client) {
+        JLabel lable=new JLabel();
+        lable.setFont(new Font("Arial", Font.PLAIN, 20));
         initComponents();
         this.client = client;
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    client.send(new Request("exit", "", user));
+                    client.send(new Request("exit", "", client.getUser()));
                     System.out.println("hghgh");
                     Response response = client.receive();
                     System.out.println(response.getResponseCode());
@@ -69,8 +72,7 @@ public class MainMenu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 StringBuilder errors=new StringBuilder();
-                JLabel lable=new JLabel();
-                lable.setFont(new Font("Arial", Font.PLAIN, 20));
+
                 try{
                     Integer key;
                     lable.setText("Введите ключ квартиры, которую хотите удалить");
@@ -107,11 +109,27 @@ public class MainMenu extends JPanel {
                 App.mainFrame.validate();
             }
         });
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    client.send(new Request("clear", "", client.getUser()));
+                    Response response = client.receive();
+                    lable.setText(response.getResponseBody());
+                    JOptionPane.showMessageDialog(null, lable);
+
+                }catch (IOException ex) {
+                    ex.printStackTrace();
+                } catch (ClassNotFoundException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         infoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    client.send(new Request("info", "", user));
+                    client.send(new Request("info", "", client.getUser()));
                     Response response = client.receive();
                     JOptionPane.showMessageDialog(null, response.getResponseBody());
 
@@ -126,7 +144,7 @@ public class MainMenu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    client.send(new Request("help", "", user));
+                    client.send(new Request("help", "", client.getUser()));
                     Response response = client.receive();
                     JOptionPane.showMessageDialog(null, response.getResponseBody());
                 } catch (IOException ex) {
@@ -150,6 +168,7 @@ public class MainMenu extends JPanel {
         insertButton=new JButton();
         remove_keyButton=new JButton();
         updateButton=new JButton();
+        clearButton=new JButton();
         mainMenuPanel.setBackground(new Color(148, 204, 227));
         mainMenuPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
                 EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
@@ -214,6 +233,13 @@ public class MainMenu extends JPanel {
         remove_keyButton.setBackground(new Color(196, 116, 161));
         remove_keyButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
         mainMenuPanel.add(remove_keyButton, "cell 2 6");
+        //-----clearButton-----
+        clearButton.setText("clear");
+        clearButton.setForeground(new Color(40, 61, 82));
+        clearButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        clearButton.setBackground(new Color(196, 116, 161));
+        clearButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
+        mainMenuPanel.add(clearButton, "cell 5 6");
         //-----infoButton-----
         infoButton.setText("info");
         infoButton.setForeground(new Color(40, 61, 82));

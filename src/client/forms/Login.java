@@ -27,6 +27,7 @@ public class Login extends JPanel {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton backButton;
+
     public Login(Client client) {
         initComponents();
         this.client = client;
@@ -46,7 +47,6 @@ public class Login extends JPanel {
                     Response response=client.receive();
                     if (response.getResponseCode().equals(ResponseCode.OK)) {
                         client.setUser(user);
-                        App.mainMenu.setUser(user);
                         App.mainFrame.setContentPane(App.mainMenu.getMainMenuPanel());
                         App.mainFrame.validate();
 
