@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-public class Update extends JPanel {
+public class ReplaceIfGreater extends JPanel {
     private Client client;
     private JPanel insertPanel;
     private JLabel name;
@@ -43,10 +43,10 @@ public class Update extends JPanel {
     private JTextField yearField;
     private JLabel floorHouse;
     private JTextField floorField;
-    private JLabel IdLable;
-    private JTextField idField;
+    private JLabel keyLable;
+    private JTextField keyField;
     private JButton insertButton;
-    public Update(Client client){
+    public ReplaceIfGreater(Client client){
         initComponents();
         this.client=client;
         backButton.addActionListener(new ActionListener() {
@@ -60,14 +60,14 @@ public class Update extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 StringBuilder errors = new StringBuilder();
-                int id = 0;
+                int key = 0;
                 try {
-                    id = Integer.parseInt(idField.getText());
-                    if (id <= 0) throw new IncorrectValueException();
+                    key = Integer.parseInt(keyField.getText());
+                    if (key <= 0) throw new IncorrectValueException();
                 } catch (NumberFormatException exception) {
-                    errors.append(LocaleBundle.getCurrentBundle().getString("Exception14")+"\n");
+                    errors.append(LocaleBundle.getCurrentBundle().getString("Exception1")+"\n");
                 } catch (IncorrectValueException notDeclaredValueException) {
-                    errors.append(LocaleBundle.getCurrentBundle().getString("Exception15")+"\n");
+                    errors.append(LocaleBundle.getCurrentBundle().getString("Exception2")+"\n");
                 }
                 String name = null;
                 try {
@@ -148,8 +148,9 @@ public class Update extends JPanel {
                 if (errors.toString().equals("")) {
                     try {
 
-                        client.send(new Request("update",String.valueOf(id),
-                                new Flat(id,
+                        client.send(new Request("replace_if_greater",
+                                String.valueOf(key),
+                                new Flat(11,
                                         name, new Coordinates(x, y),
                                         LocalDateTime.now(),
                                         area,
@@ -204,8 +205,8 @@ public class Update extends JPanel {
         yearField=new JTextField();
         floorHouse=new JLabel();
         floorField=new JTextField();
-        IdLable=new JLabel();
-        idField=new JTextField();
+        keyLable=new JLabel();
+        keyField=new JTextField();
         insertButton=new JButton();
 
 
@@ -245,9 +246,9 @@ public class Update extends JPanel {
 
 
         //---- name ----
-        name.setText("Update Flat");
+        name.setText("Replace if greater");
         name.setHorizontalAlignment(SwingConstants.CENTER);
-        name.setFont(new Font("Arial",Font.PLAIN, 50));
+        name.setFont(new Font("Arial",Font.PLAIN, 40));
         name.setBackground(new Color(255, 102, 102));
         name.setForeground(new Color(194, 103, 160));
         insertPanel.add(name, "cell 4 0 ,align center center,grow 0 0");
@@ -340,20 +341,20 @@ public class Update extends JPanel {
         furnishBox.setSelectedIndex(1);
         insertPanel.add(furnishBox, "cell 3 5,aligny center,grow 100 0,width 80:130:220,height 25:30:50");
 
-        //----IdLable-----
-        IdLable.setText("Id");
-        IdLable.setHorizontalAlignment(SwingConstants.CENTER);
-        IdLable.setForeground(new Color(40, 61, 82));
-        IdLable.setFont(new Font("Arial", Font.BOLD, 20));
-        insertPanel.add(IdLable, "cell 2 7");
+        //----keyLable-----
+        keyLable.setText("Ключ");
+        keyLable.setHorizontalAlignment(SwingConstants.CENTER);
+        keyLable.setForeground(new Color(40, 61, 82));
+        keyLable.setFont(new Font("Arial", Font.BOLD, 20));
+        insertPanel.add(keyLable, "cell 2 7");
 
-        //----idField-------
-        idField.setHorizontalAlignment(SwingConstants.CENTER);
-        idField.setBackground(Color.white);
-        idField.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-        idField.setBorder(new EtchedBorder());
-        idField.setFont(new Font("Arial", Font.BOLD, 20));
-        insertPanel.add(idField, "cell 3 7,aligny center,grow 100 0,width 80:130:220,height 25:30:50");
+        //----keyField-------
+        keyField.setHorizontalAlignment(SwingConstants.CENTER);
+        keyField.setBackground(Color.white);
+        keyField.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+        keyField.setBorder(new EtchedBorder());
+        keyField.setFont(new Font("Arial", Font.BOLD, 20));
+        insertPanel.add(keyField, "cell 3 7,aligny center,grow 100 0,width 80:130:220,height 25:30:50");
 
         //----viewLable----
         viewLable.setText("Вид из окна");
@@ -454,7 +455,6 @@ public class Update extends JPanel {
         insertPanel.add(insertButton, "cell 5 7,align center center,grow 0 0,width 100:150:250,height 30:35:45");
 
 
-
         //---- backButton ----
         backButton.setText("\u041d\u0430\u0437\u0430\u0434");
         backButton.setBackground(Color.white);
@@ -479,11 +479,11 @@ public class Update extends JPanel {
         yearHouse.setText(LocaleBundle.getCurrentBundle().getString("yearHouse"));
         floorHouse.setText(LocaleBundle.getCurrentBundle().getString("floorHouse"));
         insertButton.setText(LocaleBundle.getCurrentBundle().getString("updateButton"));
-        IdLable.setText(LocaleBundle.getCurrentBundle().getString("idLable"));
+        keyLable.setText(LocaleBundle.getCurrentBundle().getString("keyLable"));
     }
 
 
-    public JPanel getUpdatePanel(){
+    public JPanel getReplaceGPanel(){
         return insertPanel;
     }
 

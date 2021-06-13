@@ -36,6 +36,8 @@ public class Resource_esp extends ListResourceBundle {
                     {"idLable", "id"},
                     {"updateButton", "Cambiar"},
 
+                    {"removeKey?", "Ingresa la clave del apartamento que deseas eliminar"},
+
                     {"Exception1", "La clave es un número entero"},
                     {"Exception2", "La clave debe ser mayor que 0"},
                     {"Exception3", "El nombre no puede ser una cadena vacía"},

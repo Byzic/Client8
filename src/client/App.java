@@ -12,6 +12,7 @@ public class App {
     public static client.forms.Register register;
     public static Insert insert;
     public static Update update;
+    public static ReplaceIfGreater replaceg;
 
     public static void main(String[] args) {
         Client client = new Client("localhost", 8088);
@@ -19,8 +20,9 @@ public class App {
         register = new Register(client);
         insert=new Insert(client);
         update=new Update(client);
+        replaceg=new ReplaceIfGreater(client);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setSize(1100, 700);
+        mainFrame.setSize(1200, 800);
         startMenu = new StartMenu(client);
         mainMenu=new MainMenu(client);
         mainFrame.setContentPane(startMenu.getStartMenuPanel());

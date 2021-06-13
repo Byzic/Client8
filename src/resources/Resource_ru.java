@@ -37,6 +37,8 @@ public class Resource_ru extends ListResourceBundle {
                     {"keyLable", "Ключ"},
                     {"idLable", "id"},
 
+                    {"removeKey?", "Введите ключ квартиры, которую хотите удалить"},
+
 
 
                     {"Exception1", "Ключ должен быть целым числом"},

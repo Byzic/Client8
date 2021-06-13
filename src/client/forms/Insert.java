@@ -248,7 +248,7 @@ public class Insert extends JPanel {
         //---- name ----
         name.setText("Insert Flat");
         name.setHorizontalAlignment(SwingConstants.CENTER);
-        name.setFont(new Font("Arial",Font.BOLD, 50));
+        name.setFont(new Font("Arial",Font.PLAIN, 50));
         name.setBackground(new Color(255, 102, 102));
         name.setForeground(new Color(194, 103, 160));
         insertPanel.add(name, "cell 4 0 ,align center center,grow 0 0");
