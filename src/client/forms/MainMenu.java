@@ -6,7 +6,9 @@ import common.Request;
 import common.Response;
 import common.ResponseCode;
 import common.User;
+import exceptions.IncorrectValueException;
 import net.miginfocom.swing.MigLayout;
+import resources.LocaleBundle;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -26,6 +28,7 @@ public class MainMenu extends JPanel {
     private JButton helpButton;
     private JButton infoButton;
     private JButton insertButton;
+    private JButton remove_keyButton;
 
 
     public void setUser(User user){
@@ -59,6 +62,41 @@ public class MainMenu extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 App.mainFrame.setContentPane(App.insert.getInsertPanel());
                 App.mainFrame.validate();
+            }
+        });
+        remove_keyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                StringBuilder errors=new StringBuilder();
+                JLabel lable=new JLabel();
+                lable.setFont(new Font("Arial", Font.PLAIN, 20));
+                try{
+                    Integer key;
+                    lable.setText("Введите ключ квартиры, которую хотите удалить");
+                    String str=JOptionPane.showInputDialog(lable);
+                    if (str.isEmpty()) throw new NullPointerException();
+                    key=Integer.parseInt(str);
+                    if (key <= 0) throw new IncorrectValueException();
+                    client.send(new Request("remove_key",key.toString(),client.getUser()));
+                    Response response=client.receive();
+                    lable.setText(response.getResponseBody());
+                    JOptionPane.showMessageDialog(null, lable);
+                } catch (NumberFormatException exception) {
+                    errors.append(LocaleBundle.getCurrentBundle().getString("Exception1")+"\n");
+                    lable.setText(errors.toString());
+                    JOptionPane.showMessageDialog(null, lable);
+                } catch (IncorrectValueException notDeclaredValueException) {
+                    errors.append(LocaleBundle.getCurrentBundle().getString("Exception2")+"\n");
+                    lable.setText(errors.toString());
+                    JOptionPane.showMessageDialog(null, lable);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }catch (NullPointerException ex){
+
+                }
+
             }
         });
         infoButton.addActionListener(new ActionListener() {
@@ -102,6 +140,7 @@ public class MainMenu extends JPanel {
         helpButton=new JButton();
         infoButton=new JButton();
         insertButton=new JButton();
+        remove_keyButton=new JButton();
         mainMenuPanel.setBackground(new Color(148, 204, 227));
         mainMenuPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
                 EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
@@ -145,7 +184,6 @@ public class MainMenu extends JPanel {
         exitButton.setFont(new Font("Arial", Font.PLAIN, 20));
         exitButton.setBorder(new RoundedBorder(10,new Color(66,161,235)));
         mainMenuPanel.add(exitButton, "cell 6 8,align center center,grow 0 0,width 80:80:110,height 30:30:50");
-
         //-----insertButton-----
         insertButton.setText("insert");
         insertButton.setForeground(new Color(40, 61, 82));
@@ -153,6 +191,13 @@ public class MainMenu extends JPanel {
         insertButton.setBackground(new Color(196, 116, 161));
         insertButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
         mainMenuPanel.add(insertButton, "cell 3 2");
+        //-----remove_keyButton----
+        remove_keyButton.setText("remove_key");
+        remove_keyButton.setForeground(new Color(40, 61, 82));
+        remove_keyButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        remove_keyButton.setBackground(new Color(196, 116, 161));
+        remove_keyButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
+        mainMenuPanel.add(remove_keyButton, "cell 2 6");
         //-----infoButton-----
         infoButton.setText("info");
         infoButton.setForeground(new Color(40, 61, 82));

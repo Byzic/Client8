@@ -36,7 +36,7 @@ public class Resource_ru extends ListResourceBundle {
                     {"keyLable", "Ключ"},
 
 
-                    {"Exception1", "Ключ является целым числом"},
+                    {"Exception1", "Ключ должен быть целым числом"},
                     {"Exception2", "Ключ должен быть больше 0"},
                     {"Exception3", "Имя не может быть пустой строкой"},
                     {"Exception4", "Площадь является числом"},
