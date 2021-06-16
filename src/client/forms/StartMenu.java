@@ -112,7 +112,6 @@ public class StartMenu extends JPanel {
         name.setText("Flat");
         name.setHorizontalAlignment(SwingConstants.CENTER);
         name.setFont(new Font("Arial",Font.BOLD, 70));
-        //name.setFont(new Font("Arial Black", Font.BOLD, 40));
         name.setBackground(new Color(194, 103, 160));
         name.setForeground(new Color(194, 103, 160));
         startMenuPanel.add(name, "cell 4 0,align center center,grow 0 0");

@@ -38,6 +38,7 @@ public class Resource_esp extends ListResourceBundle {
 
                     {"removeKey?", "Ingresa la clave del apartamento que deseas eliminar"},
                     {"lowerKey?", "Introduzca la clave (se eliminarán todos los apartamentos con una clave inferior)"},
+                    {"numberOfRoomsKey?", "Ingresa el número de habitaciones (se eliminarán todos los apartamentos con este número)"},
 
                     {"Exception1", "La clave es un número entero"},
                     {"Exception2", "La clave debe ser mayor que 0"},

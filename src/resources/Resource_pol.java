@@ -38,6 +38,8 @@ public class Resource_pol extends ListResourceBundle {
 
                     {"removeKey?", "Wprowadź klucz do mieszkania, które chcesz usunąć"},
                     {"lowerKey?", "Wprowadź klucz (wszystkie mieszkania z niższym kluczem zostaną usunięte)"},
+                    {"numberOfRoomsKey?", "Wpisz liczbę pokoi (wszystkie mieszkania o tym numerze zostaną usunięte)"},
+
 
                     {"Exception1", "Kluczem jest liczba całkowita"},
                     {"Exception2", "Klucz musi być większy niż 0"},

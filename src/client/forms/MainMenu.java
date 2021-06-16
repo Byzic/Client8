@@ -34,6 +34,10 @@ public class MainMenu extends JPanel {
     private JButton replaceIfGreaterButton;
     private JButton replaceIfLowerButton;
     private JButton lowerKeyButton;
+    private JButton numberOfRoomsButton;
+    private JButton countGreater;
+    private JButton showButton;
+
 
 
 
@@ -143,6 +147,22 @@ public class MainMenu extends JPanel {
                 App.mainFrame.validate();
             }
         });
+        countGreater.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //подумать
+
+            }
+        });
+        showButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                App.show.drawTable();
+                App.mainFrame.setContentPane(App.show.getShowPanel());
+                App.mainFrame.validate();
+
+            }
+        });
         lowerKeyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -174,6 +194,38 @@ public class MainMenu extends JPanel {
 
                 }
 
+            }
+        });
+        numberOfRoomsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                StringBuilder errors=new StringBuilder();
+                try{
+                    Integer numberOfRooms;
+                    lable.setText(LocaleBundle.getCurrentBundle().getString("numberOfRoomsKey?"));
+                    String str=JOptionPane.showInputDialog(lable);
+                    if (str.isEmpty()) throw new NullPointerException();
+                    numberOfRooms=Integer.parseInt(str);
+                    if (numberOfRooms <= 0 || numberOfRooms >11 ) throw new IncorrectValueException();
+                    client.send(new Request("remove_all_by_number_of_rooms",numberOfRooms.toString(),client.getUser()));
+                    Response response=client.receive();
+                    lable.setText(response.getResponseBody());
+                    JOptionPane.showMessageDialog(null, lable);
+                } catch (NumberFormatException exception) {
+                    errors.append(LocaleBundle.getCurrentBundle().getString("Exception1")+"\n");
+                    lable.setText(errors.toString());
+                    JOptionPane.showMessageDialog(null, lable);
+                } catch (IncorrectValueException notDeclaredValueException) {
+                    errors.append(LocaleBundle.getCurrentBundle().getString("Exception13")+"\n");
+                    lable.setText(errors.toString());
+                    JOptionPane.showMessageDialog(null, lable);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }catch (NullPointerException ex){
+
+                }
             }
         });
         infoButton.addActionListener(new ActionListener() {
@@ -223,6 +275,9 @@ public class MainMenu extends JPanel {
         lowerKeyButton=new JButton();
         replaceIfGreaterButton=new JButton();
         replaceIfLowerButton=new JButton();
+        numberOfRoomsButton=new JButton();
+        countGreater=new JButton();
+        showButton=new JButton();
         mainMenuPanel.setBackground(new Color(148, 204, 227));
         mainMenuPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
                 EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
@@ -280,6 +335,20 @@ public class MainMenu extends JPanel {
         updateButton.setBackground(new Color(196, 116, 161));
         updateButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
         mainMenuPanel.add(updateButton, "cell 4 2");
+        //-----showButton-----
+        showButton.setText("show");
+        showButton.setForeground(new Color(40, 61, 82));
+        showButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        showButton.setBackground(new Color(196, 116, 161));
+        showButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
+        mainMenuPanel.add(showButton, "cell 3 4");
+        //-----countGreater-----
+        countGreater.setText("count_greater_than_furnish");
+        countGreater.setForeground(new Color(40, 61, 82));
+        countGreater.setFont(new Font("Arial", Font.PLAIN, 20));
+        countGreater.setBackground(new Color(196, 116, 161));
+        countGreater.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
+        mainMenuPanel.add(countGreater, "cell 2 4");
         //-----remove_keyButton----
         remove_keyButton.setText("remove_key");
         remove_keyButton.setForeground(new Color(40, 61, 82));
@@ -315,6 +384,13 @@ public class MainMenu extends JPanel {
         lowerKeyButton.setBackground(new Color(196, 116, 161));
         lowerKeyButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
         mainMenuPanel.add(lowerKeyButton, "cell 3 8");
+        //-----numberOfRoomsButton-----
+        numberOfRoomsButton.setText("remove_all_by_number_of_rooms");
+        numberOfRoomsButton.setForeground(new Color(40, 61, 82));
+        numberOfRoomsButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        numberOfRoomsButton.setBackground(new Color(196, 116, 161));
+        numberOfRoomsButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
+        mainMenuPanel.add(numberOfRoomsButton, "cell 2 8");
         //-----infoButton-----
         infoButton.setText("info");
         infoButton.setForeground(new Color(40, 61, 82));
