@@ -59,6 +59,10 @@ public class Resource_ru extends ListResourceBundle {
                     {"Exception14", "Id должно быть целым числом"},
                     {"Exception15", "Id должно быть больше 0"},
 
+                    {"scriptOptionPaneError1", "Не удалось выполнить команду! Проверьте правильность ввода аргументов!\n"},
+                    {"scriptOptionPaneError2", "Файл не найден"},
+
+
 
 
 

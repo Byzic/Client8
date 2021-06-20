@@ -1,5 +1,6 @@
 package client.utility;
 
+import client.Client;
 import common.Request;
 import common.Response;
 import common.ResponseCode;
@@ -9,9 +10,12 @@ import exceptions.EmptyArgumentException;
 import exceptions.IncorrectInputInScriptException;
 import exceptions.IncorrectValueException;
 import exceptions.ScriptRecursionException;
+import resources.LocaleBundle;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -28,6 +32,19 @@ public class Console {
     private Stack<File> scriptFileNames = new Stack<File>();
     private Stack<Scanner> scannerStack = new Stack<>();
     private AuthManager authManager;
+    private File file;
+    private JTextPane textPane;
+    private Client client;
+    public Console(Scanner scanner, File file, JTextPane textPane, Client client){
+        this.scanner=scanner;
+        this.file=file;
+        this.textPane=textPane;
+        this.client=client;
+        scriptFileNames.push(file);
+        textPane.setText(textPane.getText() +"Выполняю скрипт '" + file.getName() + "'...");
+
+
+    }
     public Console(Scanner scanner, Creator creator,AuthManager authManager){
         this.scanner=scanner;
         this.creator=creator;
@@ -42,45 +59,74 @@ public class Console {
     public void setList(ArrayList list){
         this.rlist=list;
     }
+
+    public void start(){
+        Request requestToServer = null;
+        Response serverResponse = null;
+        do {
+            try{
+                Request request=(serverResponse != null ? workMode(serverResponse,client.getUser()) :
+                        workMode(null, client.getUser()));
+
+                if (request == null) {
+                    textPane.setText(textPane.getText() + LocaleBundle.getCurrentBundle().getString("scriptOptionPaneError1"));
+                }else{
+                    client.send(request);
+                    Response response=client.receive();
+                    textPane.setText(textPane.getText() +response.getResponseBody());
+                }
+            } catch (IOException ioException) {
+                //JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
+            } catch (ClassNotFoundException exception) {
+                //
+            }
+
+        }while(!(scannerStack.isEmpty()&& !scanner.hasNext()));
+
+    }
+
+
     public Request workMode(Response serverResponse, User user){
         ResponseCode serverResponseCode=null;
         String serverResponseBody=null;
         if (serverResponse!=null){
             serverResponseBody=serverResponse.getResponseBody();}
         if (serverResponse!=null){
-        serverResponseCode=serverResponse.getResponseCode();}
+            serverResponseCode=serverResponse.getResponseCode();}
         String userInput="";
         String[] userCommand = {"", ""};
         TypeOfCommand typeOfCommand;
         try {
             do {
                 try {
-                    if (!scannerStack.isEmpty() && (serverResponseCode == ResponseCode.SERVER_EXIT || (!scanner.hasNextLine() && serverResponseCode == ResponseCode.ERROR)) ){
-                        throw new IncorrectInputInScriptException();
-                    }
                     while (!scannerStack.isEmpty() && !scanner.hasNextLine()) {
                         scanner.close();
                         scanner = scannerStack.pop();
-                        System.out.println("Возвращаюсь из скрипта '" + scriptFileNames.pop().getName() + "'!");
+                        textPane.setText(textPane.getText()+"Возвращаюсь из скрипта '" + scriptFileNames.pop().getName() + "'!");
                     }
-                    if (!scannerStack.isEmpty()) {
+
+
+                    if (serverResponseCode == ResponseCode.SERVER_EXIT || serverResponseCode == ResponseCode.ERROR) {
+                        throw new IncorrectInputInScriptException();
+                    }
+                    if (scanner.hasNext()) {
 
                         userInput = scanner.nextLine();
-                        if (!userInput.isEmpty()) {
-                            System.out.print("\u001B[37m"+"\u001B[36m"+"$ ");
-                            System.out.println(userInput+"\u001B[36m"+"\u001B[37m");
-                        }}
-                    if (scannerStack.isEmpty()) {
-                        System.out.println("Введите желаемую команду");
-                        userInput = scanner.nextLine();
-                        scriptFileNames=new Stack<>();
+
+                        textPane.setText(textPane.getText() +"\n");
+                        textPane.setText(textPane.getText() + userInput + "\n");
+                        textPane.setText(textPane.getText() +"\n");
+
+
+                        userCommand = (userInput.trim() + " ").split(" ", 2);
+                        userCommand[0] = userCommand[0].toLowerCase();
+                        userCommand[1] = userCommand[1].trim();
                     }
-                    userCommand = (userInput.trim() + " ").split(" ", 2);
-                    userCommand[0] = userCommand[0].toLowerCase();
-                    userCommand[1] = userCommand[1].trim();
+
+
                 } catch (NoSuchElementException | IllegalStateException exception) {
-                    System.out.println("Произошла ошибка при вводе команды!");
-                    userCommand = new String[]{"", ""};
+                        textPane.setText(textPane.getText() + "Произошла ошибка при вводе команды!\n");
+                        userCommand = new String[]{"", ""};
                 }
                 typeOfCommand = checkCommand(userCommand[0], userCommand[1]);
 
@@ -109,17 +155,13 @@ public class Console {
 
             }
             catch (FileNotFoundException exception) {
-                System.out.println("Файл со скриптом не найден!");
+                textPane.setText(textPane.getText() +"Файл со скриптом не найден!");
             } catch (ScriptRecursionException e) {
-                System.out.println("Скрипты не могут вызываться рекурсивно!");
+                textPane.setText(textPane.getText() +"Скрипты не могут вызываться рекурсивно!");
                 throw new IncorrectInputInScriptException();
             }
             }catch(IncorrectInputInScriptException e){
-            if (!rlist.isEmpty()){
-                System.out.println(rlist.get(rlist.size()-1).getResponseBody());
-                rlist.remove(rlist.size()-1);
-            }
-            System.out.println("Выполнение скрипта прервано!");
+            textPane.setText(textPane.getText() + "Выполнение скрипта прервано!\n");
             while (!scannerStack.isEmpty()) {
                 scanner.close();
                 scanner = scannerStack.pop();

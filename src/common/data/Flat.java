@@ -22,7 +22,7 @@ public class Flat implements Comparable<Flat>, Serializable {
     private User owner;
 
 
-    public Flat(int id, String name, Coordinates coordinates, java.time.LocalDateTime creationDate, Float area, Integer numberOfRooms, Furnish furnish, View view, Transport transport, House house, User owner){
+    public Flat(int id, String name, Coordinates coordinates, java.time.LocalDateTime creationDate, Float area, Integer numberOfRooms, Furnish furnish, View view, Transport transport, House house,User owner){
         this.id=id;
         this.name=name;
         this.coordinates=coordinates;
@@ -35,12 +35,12 @@ public class Flat implements Comparable<Flat>, Serializable {
         this.house=house;
         this.owner=owner;
     }
-    public void setID(int ID){
-        this.id=ID;
-    }
     /**
      * @return ID квартиры
      */
+    public void setID(int ID){
+        this.id=ID;
+    }
     public Integer getID(){
         return id;
     }
@@ -112,7 +112,7 @@ public class Flat implements Comparable<Flat>, Serializable {
     @Override
     public String toString() {
         String info = "";
-        info += "\u001B[37m"+"\u001B[36m"+"Квартира № " + id+"\u001B[36m"+"\u001B[37m";
+        info += "Квартира № " + id;
         info += " (дата занесения в протокол " + creationDate.toLocalDate() + " " + creationDate.toLocalTime() + ")";
         info += "\n Имя владельца: " + name;
         info += "\n Местоположение: " + coordinates;

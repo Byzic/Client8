@@ -59,7 +59,8 @@ public class Resource_ma extends ListResourceBundle {
                     {"Exception14", "Id мора да биде цел број"},
                     {"Exception15", "Id мора да биде поголем од 0"},
 
-
+                    {"scriptOptionPaneError1", "Не успеав да ја извршам командата! Проверете ги точните аргументи! \n"},
+                    {"scriptOptionPaneError2", "Датотеката не е пронајдена"},
                     //{"login_loginName", "Логин"},
                     //{"login_loginName", "Логин"},
                     //{"login_loginName", "Логин"},

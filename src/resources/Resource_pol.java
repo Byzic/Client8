@@ -57,6 +57,9 @@ public class Resource_pol extends ListResourceBundle {
                     {"Exception14", "Id musi być liczbą całkowitą"},
                     {"Exception15", "Id musi być większy niż 0"},
 
+                    {"scriptOptionPaneError1", "Nie udało się wykonać polecenia! Sprawdź poprawne argumenty!\n"},
+                    {"scriptOptionPaneError2", "Nie znaleziono pliku"},
+
 
 
                     //{"login_loginName", "Логин"},

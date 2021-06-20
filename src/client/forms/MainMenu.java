@@ -37,9 +37,8 @@ public class MainMenu extends JPanel {
     private JButton numberOfRoomsButton;
     private JButton countGreater;
     private JButton showButton;
-
-
-
+    private JButton visualizeButton;
+    private JButton executeScriptButton;
 
     public void setUser(User user){
         this.user=user;
@@ -110,6 +109,7 @@ public class MainMenu extends JPanel {
 
             }
         });
+
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -161,6 +161,22 @@ public class MainMenu extends JPanel {
                 App.mainFrame.setContentPane(App.show.getShowPanel());
                 App.mainFrame.validate();
 
+            }
+        });
+        executeScriptButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                App.mainFrame.setContentPane(App.script.getScriptPanel());
+                App.mainFrame.validate();
+
+            }
+        });
+        visualizeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                App.visualize.startThread();
+                App.mainFrame.setContentPane(App.visualize.getVisualizePanel());
+                App.mainFrame.validate();
             }
         });
         lowerKeyButton.addActionListener(new ActionListener() {
@@ -269,6 +285,7 @@ public class MainMenu extends JPanel {
         helpButton=new JButton();
         infoButton=new JButton();
         insertButton=new JButton();
+        visualizeButton=new JButton();
         remove_keyButton=new JButton();
         updateButton=new JButton();
         clearButton=new JButton();
@@ -278,6 +295,7 @@ public class MainMenu extends JPanel {
         numberOfRoomsButton=new JButton();
         countGreater=new JButton();
         showButton=new JButton();
+        executeScriptButton=new JButton();
         mainMenuPanel.setBackground(new Color(148, 204, 227));
         mainMenuPanel.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.
                 EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing
@@ -314,6 +332,14 @@ public class MainMenu extends JPanel {
         name.setBackground(new Color(255, 102, 102));
         name.setForeground(Color.WHITE);
         mainMenuPanel.add(name, "cell 2 0 4 1,align center center,grow 0 0");
+        //-----executeScriptButton-----
+        executeScriptButton.setText("execute_script");
+        executeScriptButton.setForeground(new Color(40, 61, 82));
+        executeScriptButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        executeScriptButton.setBackground(new Color(196, 116, 161));
+        executeScriptButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
+        mainMenuPanel.add(executeScriptButton, "cell 2 2");
+
         //---- exitButton ----
         exitButton.setText("Exit");
         exitButton.setBackground(Color.WHITE);
@@ -342,6 +368,13 @@ public class MainMenu extends JPanel {
         showButton.setBackground(new Color(196, 116, 161));
         showButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
         mainMenuPanel.add(showButton, "cell 3 4");
+        //-----visualizeButton-----
+        visualizeButton.setText("visualize");
+        visualizeButton.setForeground(new Color(40, 61, 82));
+        visualizeButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        visualizeButton.setBackground(new Color(196, 116, 161));
+        visualizeButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
+        mainMenuPanel.add(visualizeButton, "cell 4 4");
         //-----countGreater-----
         countGreater.setText("count_greater_than_furnish");
         countGreater.setForeground(new Color(40, 61, 82));

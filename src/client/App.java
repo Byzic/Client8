@@ -16,13 +16,17 @@ public class App {
     public static ReplaceIfLower replacel;
     public static Show show;
     public static Filter filter;
+    public static Visualize visualize;
+    public static Script script;
 
     public static void main(String[] args) {
         Client client = new Client("localhost", 8088);
         login = new Login(client);
         register = new Register(client);
+        visualize=new Visualize(client);
         insert=new Insert(client);
         update=new Update(client);
+        script=new Script(client);
         filter=new Filter(client);
         replaceg=new ReplaceIfGreater(client);
         replacel=new ReplaceIfLower(client);

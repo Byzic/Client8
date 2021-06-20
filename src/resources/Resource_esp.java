@@ -56,6 +56,9 @@ public class Resource_esp extends ListResourceBundle {
                     {"Exception14", "Id debe ser un número entero"},
                     {"Exception15", "Id debe ser mayor que 0"},
 
+                    {"scriptOptionPaneError1", "No se pudo ejecutar el comando. ¡Verifique los argumentos correctos! \n"},
+                    {"scriptOptionPaneError2", "Archivo no encontrado"},
+
                     //{"login_loginName", "Логин"},
                     //{"login_loginName", "Логин"},
                     //{"login_loginName", "Логин"},
