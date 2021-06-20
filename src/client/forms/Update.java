@@ -118,7 +118,7 @@ public class Update extends JPanel {
                 Long numberOfFloors = null;
                 try{
                     if (houseField.getText().isEmpty() & yearField.getText().isEmpty() & floorField.getText().isEmpty()) throw new NullPointerException();
-                    nameHous=nameHouse.getText();
+                    nameHous=houseField.getText();
                     year=Long.parseLong(yearField.getText());
                     try{
                         if (year>846 | year <0) throw new IncorrectValueException();

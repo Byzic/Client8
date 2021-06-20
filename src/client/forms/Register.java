@@ -2,6 +2,7 @@ package client.forms;
 
 import client.App;
 import client.Client;
+import client.utility.PasswordHasher;
 import common.Request;
 import common.Response;
 import common.ResponseCode;
@@ -45,26 +46,29 @@ public class Register extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
+                    if (String.valueOf(passwordField.getPassword()).equals(String.valueOf(passwordField2.getPassword()))) {
+                        Random rand = new Random();
+                        int redValue = rand.nextInt(255);
+                        int greenValue = rand.nextInt(255);
+                        int blueValue = rand.nextInt(255);
+                        Color clr = new Color(redValue, greenValue, blueValue);
+                        String hex = "0x" + Integer.toHexString(clr.getRGB()).substring(2).toUpperCase(Locale.ROOT);
+                        User user = new User(loginField.getText(), PasswordHasher.hashPassword(String.valueOf(passwordField.getPassword())+"!!!(*_*)!!!"), hex);
+                        client.send(new Request("register","",user));
+                        Response response=client.receive();
+                        if (response.getResponseCode().equals(ResponseCode.OK)) {
+                            client.setUser(user);
+                            App.mainFrame.setContentPane(App.mainMenu.getMainMenuPanel());
+                            App.mainFrame.validate();
+                            App.mainMenu.setUser(user);
 
-                    Random rand = new Random();
-                    int redValue = rand.nextInt(255);
-                    int greenValue = rand.nextInt(255);
-                    int blueValue = rand.nextInt(255);
-                    Color clr = new Color(redValue, greenValue, blueValue);
-                    String hex = "0x" + Integer.toHexString(clr.getRGB()).substring(2).toUpperCase(Locale.ROOT);
-                    User user = new User(loginField.getText(), String.valueOf(passwordField.getPassword()), null);
-                    client.send(new Request("registr","",user));
-                    Response response=client.receive();
-                    if (response.getResponseCode().equals(ResponseCode.OK)) {
-                        client.setUser(user);
-                        App.mainFrame.setContentPane(App.mainMenu.getMainMenuPanel());
-                        App.mainFrame.validate();
-                        App.mainMenu.setUser(user);
 
 
-
-                    }else {
-                        //JOptionPane.showMessageDialog(null, response.localize());
+                        }else {
+                            //JOptionPane.showMessageDialog(null, response.localize());
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Пароли не совпадают");//LocaleBundle.getCurrentBundle().getString("registerOptionPaneError"));
                     }
 
                 } catch (IOException ex) {
@@ -145,6 +149,8 @@ public class Register extends JPanel {
 
         //---- loginField ----
         loginField.setBackground(Color.white);
+        loginField.setFont(new Font("Arial", Font.BOLD, 20));
+        loginField.setForeground(new Color(40, 61, 82));
         registerPanel.add(loginField, "cell 4 2,alignx center,growx 0,width 100:200:250");
 
         //---- passwordName ----
@@ -156,6 +162,8 @@ public class Register extends JPanel {
 
         //---- passwordField ----
         passwordField.setBackground(Color.white);
+        passwordField.setFont(new Font("Arial", Font.BOLD, 20));
+        passwordField.setForeground(new Color(40, 61, 82));
         registerPanel.add(passwordField, "cell 4 4,alignx center,growx 0,width 100:200:250");
 
         //---- confirmPassword ----
@@ -167,6 +175,8 @@ public class Register extends JPanel {
 
         //---- passwordField2 ----
         passwordField2.setBackground(Color.white);
+        passwordField2.setFont(new Font("Arial", Font.BOLD, 20));
+        passwordField2.setForeground(new Color(40, 61, 82));
         registerPanel.add(passwordField2, "cell 4 6,alignx center,growx 0,width 100:200:250");
 
         //---- registerButton ----

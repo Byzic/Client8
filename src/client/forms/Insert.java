@@ -4,6 +4,7 @@ import client.App;
 import client.Client;
 import common.Request;
 import common.Response;
+import common.ResponseCode;
 import common.data.*;
 import exceptions.IncorrectValueException;
 import net.miginfocom.swing.MigLayout;
@@ -118,7 +119,7 @@ public class Insert extends JPanel {
                 Long numberOfFloors = null;
                 try{
                     if (houseField.getText().isEmpty() & yearField.getText().isEmpty() & floorField.getText().isEmpty()) throw new NullPointerException();
-                    nameHous=nameHouse.getText();
+                    nameHous=houseField.getText();
                     year=Long.parseLong(yearField.getText());
                     try{
                         if (year>846 | year <0) throw new IncorrectValueException();
@@ -164,8 +165,9 @@ public class Insert extends JPanel {
                         );
                         Response response = client.receive();
                         JOptionPane.showMessageDialog(null, response.getResponseBody());
+                        if (response.getResponseCode()!= ResponseCode.ERROR){
                         App.mainFrame.setContentPane(App.mainMenu.getMainMenuPanel());
-                        App.mainFrame.validate();
+                        App.mainFrame.validate();}
                     } catch (IOException exception) {
                         //JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
                     } catch (ClassNotFoundException classNotFoundException) {
