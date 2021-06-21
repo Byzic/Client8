@@ -65,7 +65,7 @@ public class Register extends JPanel {
 
 
                         }else {
-                            //JOptionPane.showMessageDialog(null, response.localize());
+                            JOptionPane.showMessageDialog(null, response.localize());
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Пароли не совпадают");//LocaleBundle.getCurrentBundle().getString("registerOptionPaneError"));

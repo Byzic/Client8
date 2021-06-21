@@ -6,6 +6,7 @@ import common.Request;
 import common.Response;
 import common.ResponseCode;
 import common.User;
+import common.data.Furnish;
 import exceptions.IncorrectValueException;
 import net.miginfocom.swing.MigLayout;
 import resources.LocaleBundle;
@@ -53,9 +54,7 @@ public class MainMenu extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     client.send(new Request("exit", "", client.getUser()));
-                    System.out.println("hghgh");
                     Response response = client.receive();
-                    System.out.println(response.getResponseCode());
                     if (response.getResponseCode().equals(ResponseCode.OK)) {
                         App.mainFrame.setContentPane(App.startMenu.getStartMenuPanel());
                         App.mainFrame.validate();
@@ -147,13 +146,7 @@ public class MainMenu extends JPanel {
                 App.mainFrame.validate();
             }
         });
-        countGreater.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //подумать
 
-            }
-        });
         showButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -204,10 +197,42 @@ public class MainMenu extends JPanel {
                     lable.setText(errors.toString());
                     JOptionPane.showMessageDialog(null, lable);
                 } catch (IOException ioException) {
-                    ioException.printStackTrace();
+                    //ioException.printStackTrace();
                 } catch (ClassNotFoundException classNotFoundException) {
-                    classNotFoundException.printStackTrace();
+                    //classNotFoundException.printStackTrace();
                 }catch (NullPointerException ex){
+
+                }
+
+            }
+        });
+        countGreater.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                StringBuilder errors=new StringBuilder();
+                try{
+                    Furnish furn;
+                    lable.setText(LocaleBundle.getCurrentBundle().getString("furnish?"));
+                    String str=JOptionPane.showInputDialog(lable);
+                    if (str.isEmpty()) throw new NullPointerException();
+                    furn=Furnish.valueOf(str.toUpperCase());
+                    client.send(new Request("count_greater_than_furnish",furn.toString(),client.getUser()));
+                    Response response=client.receive();
+                    lable.setText(response.localize());
+                    JOptionPane.showMessageDialog(null, lable);
+                } catch (IllegalArgumentException ex){
+
+                    errors.append(LocaleBundle.getCurrentBundle().getString("Exception17")+"\n");
+                    lable.setText(errors.toString());
+                    JOptionPane.showMessageDialog(null, lable);
+                }catch (NullPointerException exception) {
+
+                    errors.append(LocaleBundle.getCurrentBundle().getString("Exception17")+"\n");
+                    lable.setText(errors.toString());
+                    JOptionPane.showMessageDialog(null, lable);
+                } catch (IOException ioException) {
+
+                } catch (ClassNotFoundException exception) {
 
                 }
 
@@ -251,7 +276,7 @@ public class MainMenu extends JPanel {
                 try {
                     client.send(new Request("info", "", client.getUser()));
                     Response response = client.receive();
-                    JOptionPane.showMessageDialog(null, response.getResponseBody());
+                    JOptionPane.showMessageDialog(null, response.localize());
 
                 }catch (IOException ex) {
 
@@ -266,7 +291,7 @@ public class MainMenu extends JPanel {
                 try {
                     client.send(new Request("help", "", client.getUser()));
                     Response response = client.receive();
-                    JOptionPane.showMessageDialog(null, response.getResponseBody());
+                    JOptionPane.showMessageDialog(null, response.localize());
                 } catch (IOException ex) {
 
                 } catch (ClassNotFoundException ex) {

@@ -9,6 +9,7 @@ import common.data.Furnish;
 import common.data.Transport;
 import common.data.View;
 import net.miginfocom.swing.MigLayout;
+import resources.LocaleBundle;
 
 import javax.swing.*;
 import javax.swing.event.TableModelEvent;
@@ -164,7 +165,12 @@ public class Show extends JPanel {
         scrollPane.setViewportView(table);
         showPanel.add(scrollPane, "cell 0 3 7 8");
     }
-
+    public void localize(){
+        backButton.setText(LocaleBundle.getCurrentBundle().getString("back_button"));
+        updateButton.setText(LocaleBundle.getCurrentBundle().getString("update_button"));
+        filterButton.setText(LocaleBundle.getCurrentBundle().getString("filter_button"));
+        resetButton.setText(LocaleBundle.getCurrentBundle().getString("reset_button"));
+    }
 
     public void setFilter(boolean filter) {
         isFilter = filter;
@@ -403,6 +409,8 @@ public class Show extends JPanel {
         }
         return false;
     }
+
+
 
     public JPanel getShowPanel(){
         return showPanel;

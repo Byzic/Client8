@@ -37,6 +37,8 @@ public class StartMenu extends JPanel {
                 App.update.localize();
                 App.replaceg.localize();
                 App.replacel.localize();
+                App.script.localize();
+                App.show.localize();
 
 
             }

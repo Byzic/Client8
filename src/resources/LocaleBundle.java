@@ -1,5 +1,6 @@
 package resources;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LocaleBundle {
@@ -14,9 +15,11 @@ public class LocaleBundle {
         switch (lang) {
             case "Русский":
                 currentBundle = bundle_ru;
+                Locale.setDefault(new Locale("ru", "RU"));
                 break;
             case "Македонски":
                 currentBundle = bundle_ma;
+                Locale.setDefault(new Locale("mk", "MK"));
                 break;
             case "Polski":
                 currentBundle = bundle_pol;

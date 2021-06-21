@@ -35,6 +35,7 @@ public class Script extends JPanel {
                 App.mainFrame.validate();
             }
         });
+
         chooseFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -68,6 +69,12 @@ public class Script extends JPanel {
                 }
             }
         });
+
+    }
+    public void localize() {
+        backButton.setText(LocaleBundle.getCurrentBundle().getString("back_button"));
+        chooseFileButton.setText(LocaleBundle.getCurrentBundle().getString("choose_button"));
+
 
     }
     private void initComponents(){

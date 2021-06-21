@@ -51,8 +51,8 @@ public class Login extends JPanel {
                         App.mainFrame.validate();
 
                     }else {
-                        JOptionPane.showMessageDialog(null, response.getResponseBody());
-                        //JOptionPane.showMessageDialog(null, response.localize());
+
+                        JOptionPane.showMessageDialog(null, response.localize());
                     }
 
                 } catch (IOException ex) {
