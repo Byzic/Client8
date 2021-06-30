@@ -71,10 +71,10 @@ public class Register extends JPanel {
                         JOptionPane.showMessageDialog(null, "Пароли не совпадают");//LocaleBundle.getCurrentBundle().getString("registerOptionPaneError"));
                     }
 
-                } catch (IOException ex) {
-                    //вывести на экран, что возникла ошибка при отправке запроса на сервер
-                } catch (ClassNotFoundException ex) {
-                    //вывести на экран, что возникла ошибка при получении ответа от сервера
+                } catch (IOException exception) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
+                } catch (ClassNotFoundException classNotFoundException) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("classNotFoundError"));
                 }
             }
         });

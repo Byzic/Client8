@@ -27,7 +27,8 @@ public class Response implements Serializable {
         for (String line : lines) {
             if (line.isEmpty()) continue;
             if (line.indexOf(":")!=-1){
-                String[] l=line.split(":");System.out.println(l[0]+" "+l[1]);
+                String[] l=line.split(":");
+                //System.out.println(l[0]+" "+l[1]);
                 localizeStringBody.append(LocaleBundle.getCurrentBundle().getString(l[0].trim())+l[1]+"\n");
 
             }else{

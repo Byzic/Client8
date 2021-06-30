@@ -11,6 +11,12 @@ import java.util.ArrayList;
 public class DrawSpace extends JPanel {
     private ArrayList<PointWithColor> points;
     private Client client;
+    public static int minx;
+    public static int maxx;
+    public static int miny;
+    public static int maxy;
+    public static int zerox;
+    public static int zeroy;
     public DrawSpace(Client client) {
         points = new ArrayList<>();
         this.client = client;
@@ -31,8 +37,12 @@ public class DrawSpace extends JPanel {
     private void checkForClick(MouseEvent e) {
         ArrayList<PointWithColor> copy = new ArrayList<>(points);
         for (PointWithColor point : copy) {
-            if (point.x - point.radius <= e.getX() && e.getX() <= point.x + point.radius && point.y - point.radius <= e.getY() && e.getY() <= point.y + point.radius){
-                JOptionPane.showMessageDialog(null,"Тратататата");
+            if (point.x - 11*point.radius <= e.getX() && e.getX() <= point.x +11* point.radius && point.y - 11*point.radius <= e.getY() && e.getY() <= point.y + 11*point.radius){
+                JOptionPane.showMessageDialog(null,"id: "+point.getFlat().getID()+"\n"+
+            "name: "+point.getFlat().getName()+"\n"+
+                        "x: "+point.getFlat().getCoordinates().getX()+"\n"+
+                        "y: "+point.getFlat().getCoordinates().getY()+"\n"+
+                        "creator: "+point.getFlat().getOwner().getLogin());
             }
         }
     }
@@ -45,15 +55,23 @@ public class DrawSpace extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         for (PointWithColor point : points) {
-            g2.setColor(point.getColor());
-            g2.fillRect(point.x - point.radius / 2, point.y - point.radius / 2, point.radius, point.radius);
+            g2.setColor(new Color(255 - point.getColor().getRed(), 255 - point.getColor().getGreen(), 255 - point.getColor().getBlue()));
+            g2.setFont(new Font("Arial", Font.PLAIN, 16));
+            g2.fillRect((point.x - 10*point.radius ) , (point.y - 10*point.radius) , 20*point.radius, 20*point.radius);
             Polygon p = new Polygon();
-            p.addPoint(point.x - point.radius / 2, point.y - point.radius / 2);
-            p.addPoint(point.x + point.radius / 2, point.y - point.radius / 2);
-            p.addPoint(point.x, point.radius/2);
+            p.addPoint(point.x - 14*point.radius, point.y - 10*point.radius);
+            p.addPoint(point.x + 14*point.radius , point.y - 10*point.radius);
+            p.addPoint(point.x , point.y-20*point.radius);
             g2.fillPolygon(p);
             g2.setColor(new Color(255 - point.getColor().getRed(), 255 - point.getColor().getGreen(), 255 - point.getColor().getBlue()));
-            g2.setFont(new Font("Arial", Font.PLAIN, 10));
+            g2.setFont(new Font("Arial", Font.PLAIN, 16));
+            g2.setColor(Color.BLACK);
+            g2.drawLine(zerox,miny,zerox,maxy);
+            g2.drawLine(zerox+10,maxy+10,zerox,maxy);
+            g2.drawLine(zerox-10,maxy+10,zerox,maxy);
+            g2.drawLine(maxx+20,zeroy,minx,zeroy);
+            g2.drawLine(maxx+10,zeroy+10,maxx+20,zeroy);
+            g2.drawLine(maxx+10,zeroy-10,maxx+20,zeroy);
             g2.drawString(point.getText(), point.x - g2.getFont().getSize() / 2, point.y + g2.getFont().getSize() / 2);
         }
         System.out.println("DrawSpace-59-Нарисовали новые");

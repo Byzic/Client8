@@ -199,6 +199,15 @@ public class Filter extends JPanel {
         filterButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
         filterPanel.add(filterButton, "cell 3 8 2 1,aligny center,grow 100 0,height 30:30:50");
     }
+    public void localize(){
+        backButton.setText(LocaleBundle.getCurrentBundle().getString("back_button"));
+        filterButton.setText(LocaleBundle.getCurrentBundle().getString("filterbutton"));
+        label1.setText(LocaleBundle.getCurrentBundle().getString("filter_label1"));
+        label2.setText(LocaleBundle.getCurrentBundle().getString("filter_label2"));
+        label3.setText(LocaleBundle.getCurrentBundle().getString("filter_label3"));
+
+
+    }
     public JComboBox<String> getChooseField() {
         return chooseField;
     }

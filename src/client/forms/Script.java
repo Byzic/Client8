@@ -64,7 +64,7 @@ public class Script extends JPanel {
                     } catch (FileNotFoundException fileNotFoundException) {
                         JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("scriptOptionPaneError2"));
                     } catch (IOException ioException) {
-                        //JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
+                        JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
                     }
                 }
             }

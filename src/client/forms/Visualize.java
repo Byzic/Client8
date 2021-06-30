@@ -72,7 +72,7 @@ public class Visualize extends JPanel {
         name.setFont(new Font("Arial",Font.PLAIN, 50));
         name.setBackground(new Color(255, 102, 102));
         name.setForeground(new Color(194, 103, 160));
-        visualizePanel.add(name, "cell 2 0,align center center,grow 0 0");
+        visualizePanel.add(name, "cell 3 0,align center center,grow 0 0");
 
         backButton.setText("\u041d\u0430\u0437\u0430\u0434");
         backButton.setBackground(Color.white);
@@ -84,7 +84,7 @@ public class Visualize extends JPanel {
 
         //======== drawSpace ========
 
-        drawSpace.setBackground(new Color(225, 183, 144));
+        drawSpace.setBackground(Color.white);
         drawSpace.setLayout(null);
         Dimension preferredSize = new Dimension();
         for(int i = 0; i < drawSpace.getComponentCount(); i++) {
@@ -97,9 +97,10 @@ public class Visualize extends JPanel {
         preferredSize.height += insets.bottom;
         drawSpace.setMinimumSize(preferredSize);
         drawSpace.setPreferredSize(preferredSize);
-        visualizePanel.add(drawSpace, "cell 0 1 5 8");
+        visualizePanel.add(drawSpace, "cell 1 1 5 7");
 
     }
+
 
     public void setObjects() {
         try {
@@ -113,6 +114,7 @@ public class Visualize extends JPanel {
             int minY = Integer.MAX_VALUE;
             int weight = (int) (drawSpace.getWidth() * 0.9);
             int height = (int) (drawSpace.getHeight() * 0.9);
+            //System.out.println(weight+" "+height);
             for (Map.Entry<Integer, Flat> e : collection.entrySet()) {
                 if (e.getValue().getCoordinates().getX() > maxX) maxX = (int)(float) e.getValue().getCoordinates().getX();
                 if (e.getValue().getCoordinates().getX() < minX) minX = (int)(float) e.getValue().getCoordinates().getX();
@@ -121,16 +123,23 @@ public class Visualize extends JPanel {
                 if (e.getValue().getCoordinates().getY() < minY)
                     minY = (int) (double) e.getValue().getCoordinates().getY();
             }
+            DrawSpace.miny=(int) (height + (drawSpace.getHeight() * 0.05));
+
+            DrawSpace.zerox=(int) (( - minX) * (weight / (maxX - minX)) + (drawSpace.getWidth() * 0.05));;
+            DrawSpace.maxx=(int) ((maxX - minX) * (weight / (maxX - minX)) + (drawSpace.getWidth() * 0.05));
+            DrawSpace.zeroy=(int) (-( - minY) * (height / (maxY - minY))+height + (drawSpace.getHeight() * 0.05));
+            DrawSpace.maxy=(int) (-(maxY - minY) * (height / (maxY - minY))+height + (drawSpace.getHeight() * 0.05));
             for (Map.Entry<Integer, Flat> e : collection.entrySet()) {
                 int oldX = (int)(float) e.getValue().getCoordinates().getX();
                 int oldY = (int) (double) e.getValue().getCoordinates().getY();
                 int x = (int) ((oldX - minX) * (weight / (maxX - minX)) + (drawSpace.getWidth() * 0.05));
-                int y = (int) ((oldY - minY) * (height / (maxY - minY)) + (drawSpace.getHeight() * 0.05));
+                int y = (int) (-(oldY - minY) * (height / (maxY - minY))+height + (drawSpace.getHeight() * 0.05));
+                System.out.println("137: "+height);
                 PointWithColor point = new PointWithColor(
                         x,
                         y,
                         Color.decode(e.getValue().getOwner().getColor()),
-                        height / 10,
+                        height ,
                         String.valueOf(e.getValue().getID()),
                         e.getValue(),
                         e.getKey());
@@ -152,10 +161,10 @@ public class Visualize extends JPanel {
                 drawSpace.addPointWithColor(point);
             }
 
-        } catch (IOException e) {
-            //
-        } catch (ClassNotFoundException exception) {
-            //exception.printStackTrace();
+        } catch (IOException exception) {
+            JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
+        } catch (ClassNotFoundException classNotFoundException) {
+            JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("classNotFoundError"));
         }
     }
 
@@ -183,10 +192,9 @@ public class Visualize extends JPanel {
 
     }
 
-
-
     public void localize() {
         backButton.setText(LocaleBundle.getCurrentBundle().getString("back_button"));
+
     }
     public JPanel getVisualizePanel() {
         return visualizePanel;

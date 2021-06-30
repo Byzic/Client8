@@ -163,7 +163,7 @@ public class ReplaceIfLower extends JPanel {
                                 ), client.getUser())
                         );
                         Response response = client.receive();
-                        JOptionPane.showMessageDialog(null, response.getResponseBody());
+                        JOptionPane.showMessageDialog(null, response.localize());
                         App.mainFrame.setContentPane(App.mainMenu.getMainMenuPanel());
                         App.mainFrame.validate();
                     } catch (IOException exception) {

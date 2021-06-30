@@ -73,7 +73,7 @@ public class Console {
                 }else{
                     client.send(request);
                     Response response=client.receive();
-                    textPane.setText(textPane.getText() +response.getResponseBody());
+                    textPane.setText(textPane.getText() +response.localize());
                 }
             } catch (IOException ioException) {
                 //JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));

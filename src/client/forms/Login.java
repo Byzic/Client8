@@ -45,7 +45,11 @@ public class Login extends JPanel {
                     User user = new User(loginField.getText(), PasswordHasher.hashPassword(String.valueOf(passwordField.getPassword())+"!!!(*_*)!!!"), null);
                     client.send(new Request("login","",user));
                     Response response=client.receive();
+
                     if (response.getResponseCode().equals(ResponseCode.OK)) {
+                        client.send(new Request("get_user_color", "", user));
+                        Response responsee = client.receive();
+                        if (response.getResponseBody() != null) user.setColor(responsee.getResponseBody().replaceAll("[\\n]",""));
                         client.setUser(user);
                         App.mainFrame.setContentPane(App.mainMenu.getMainMenuPanel());
                         App.mainFrame.validate();
@@ -55,10 +59,10 @@ public class Login extends JPanel {
                         JOptionPane.showMessageDialog(null, response.localize());
                     }
 
-                } catch (IOException ex) {
-                    //вывести на экран, что возникла ошибка при отправке запроса на сервер
-                } catch (ClassNotFoundException ex) {
-                    //вывести на экран, что возникла ошибка при получении ответа от сервера
+                } catch (IOException exception) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
+                } catch (ClassNotFoundException classNotFoundException) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("classNotFoundError"));
                 }
 
             }

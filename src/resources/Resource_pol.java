@@ -89,6 +89,18 @@ public class Resource_pol extends ListResourceBundle {
                     {"SHOW", "SHOW: pokaż wszystkie elementy kolekcji"},
                     {"UPDATE", "UPDATE: zaktualizuj wartość elementu kolekcji o id równym podanemu"},
 
+
+                    {"Was_Deleted", "Liczba mieszkań, które zostały usunięte:"},
+                    {"ElemDelete", "Element z kluczem został usunięty:"},
+                    {"ElemReplace", "Element z kluczem został zastąpiony:"},
+                    {"notExist", "Żadna pozycja z tym kluczem nie istnieje"},
+                    {"anotherUser", "Obiekty należące do innych użytkowników są tylko do odczytu!"},
+                    {"less", "Mieszkanie z tym kluczem nie zostało wymienione, ponieważ jest mniejsze lub równe istniejącemu"},
+                    {"bigger", "Mieszkanie z tym kluczem nie zostało wymienione, ponieważ jest większe lub równe istniejącemu"},
+                    {"idNotExist", "Element o tym identyfikatorze nie istnieje. Nie można zaktualizować wartości nieistniejącego elementu kolekcji"},
+                    {"Was_Updated", "Element kolekcji o tym identyfikatorze został pomyślnie zastąpiony:"},
+                    {"clear", "Wszystkie elementy należące do tego użytkownika zostały usunięte"},
+
                     {"informationCollection", "Informacje o kolekcji"},
                     {"Type", "Typ:"},
                     {"DateInit", "Data ostatniej inicjalizacji:"},
@@ -98,6 +110,11 @@ public class Resource_pol extends ListResourceBundle {
                     {"update_button", "Aktualizuj"},
                     {"filter_button","Filtr"},
                     {"reset_button", "Resetuj"},
+                    {"filterbutton", "Filtr"},
+                    {"filter_label1", "Pole filtra"},
+                    {"filter_label2", "Argument"},
+                    {"filter_label3", "Typ filtra"},
+                    {"Insert", "Element o podanym kluczu został pomyślnie dodany"},
 
 
 

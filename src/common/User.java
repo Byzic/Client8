@@ -11,6 +11,9 @@ public class User implements Serializable {
         this.login = login;
         this.password = password;
     }
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public User(String login, String password,String color) {
         this.login = login;

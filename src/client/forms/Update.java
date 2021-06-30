@@ -162,13 +162,13 @@ public class Update extends JPanel {
                                 ), client.getUser())
                         );
                         Response response = client.receive();
-                        JOptionPane.showMessageDialog(null, response.getResponseBody());
+                        JOptionPane.showMessageDialog(null, response.localize());
                         App.mainFrame.setContentPane(App.mainMenu.getMainMenuPanel());
                         App.mainFrame.validate();
                     } catch (IOException exception) {
-                        //JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
+                        JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
                     } catch (ClassNotFoundException classNotFoundException) {
-                        // JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("classNotFoundError"));
+                        JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("classNotFoundError"));
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, errors.toString());

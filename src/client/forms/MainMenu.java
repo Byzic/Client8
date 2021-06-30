@@ -59,10 +59,10 @@ public class MainMenu extends JPanel {
                         App.mainFrame.setContentPane(App.startMenu.getStartMenuPanel());
                         App.mainFrame.validate();
                     }
-                } catch (IOException ex) {
-
-                } catch (ClassNotFoundException ex) {
-
+                } catch (IOException exception) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
+                } catch (ClassNotFoundException classNotFoundException) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("classNotFoundError"));
                 }
 
             }
@@ -88,7 +88,7 @@ public class MainMenu extends JPanel {
                     if (key <= 0) throw new IncorrectValueException();
                     client.send(new Request("remove_key",key.toString(),client.getUser()));
                     Response response=client.receive();
-                    lable.setText(response.getResponseBody());
+                    lable.setText(response.localize());
                     JOptionPane.showMessageDialog(null, lable);
                 } catch (NumberFormatException exception) {
                     errors.append(LocaleBundle.getCurrentBundle().getString("Exception1")+"\n");
@@ -98,10 +98,10 @@ public class MainMenu extends JPanel {
                     errors.append(LocaleBundle.getCurrentBundle().getString("Exception2")+"\n");
                     lable.setText(errors.toString());
                     JOptionPane.showMessageDialog(null, lable);
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
+                } catch (IOException exception) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
                 } catch (ClassNotFoundException classNotFoundException) {
-                    classNotFoundException.printStackTrace();
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("classNotFoundError"));
                 }catch (NullPointerException ex){
 
                 }
@@ -122,13 +122,13 @@ public class MainMenu extends JPanel {
                 try {
                     client.send(new Request("clear", "", client.getUser()));
                     Response response = client.receive();
-                    lable.setText(response.getResponseBody());
+                    lable.setText(response.localize());
                     JOptionPane.showMessageDialog(null, lable);
 
-                }catch (IOException ex) {
-                    ex.printStackTrace();
-                } catch (ClassNotFoundException ex) {
-                    ex.printStackTrace();
+                } catch (IOException exception) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
+                } catch (ClassNotFoundException classNotFoundException) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("classNotFoundError"));
                 }
             }
         });
@@ -186,7 +186,7 @@ public class MainMenu extends JPanel {
                     if (key <= 0) throw new IncorrectValueException();
                     client.send(new Request("remove_lower_key",key.toString(),client.getUser()));
                     Response response=client.receive();
-                    lable.setText(response.getResponseBody());
+                    lable.setText(response.localize());
                     JOptionPane.showMessageDialog(null, lable);
                 } catch (NumberFormatException exception) {
                     errors.append(LocaleBundle.getCurrentBundle().getString("Exception1")+"\n");
@@ -196,10 +196,10 @@ public class MainMenu extends JPanel {
                     errors.append(LocaleBundle.getCurrentBundle().getString("Exception2")+"\n");
                     lable.setText(errors.toString());
                     JOptionPane.showMessageDialog(null, lable);
-                } catch (IOException ioException) {
-                    //ioException.printStackTrace();
+                } catch (IOException exception) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
                 } catch (ClassNotFoundException classNotFoundException) {
-                    //classNotFoundException.printStackTrace();
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("classNotFoundError"));
                 }catch (NullPointerException ex){
 
                 }
@@ -230,10 +230,10 @@ public class MainMenu extends JPanel {
                     errors.append(LocaleBundle.getCurrentBundle().getString("Exception17")+"\n");
                     lable.setText(errors.toString());
                     JOptionPane.showMessageDialog(null, lable);
-                } catch (IOException ioException) {
-
-                } catch (ClassNotFoundException exception) {
-
+                } catch (IOException exception) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
+                } catch (ClassNotFoundException classNotFoundException) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("classNotFoundError"));
                 }
 
             }
@@ -251,8 +251,7 @@ public class MainMenu extends JPanel {
                     if (numberOfRooms <= 0 || numberOfRooms >11 ) throw new IncorrectValueException();
                     client.send(new Request("remove_all_by_number_of_rooms",numberOfRooms.toString(),client.getUser()));
                     Response response=client.receive();
-                    lable.setText(response.getResponseBody());
-                    JOptionPane.showMessageDialog(null, lable);
+                    JOptionPane.showMessageDialog(null, response.localize());
                 } catch (NumberFormatException exception) {
                     errors.append(LocaleBundle.getCurrentBundle().getString("Exception1")+"\n");
                     lable.setText(errors.toString());
@@ -261,10 +260,10 @@ public class MainMenu extends JPanel {
                     errors.append(LocaleBundle.getCurrentBundle().getString("Exception13")+"\n");
                     lable.setText(errors.toString());
                     JOptionPane.showMessageDialog(null, lable);
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
+                } catch (IOException exception) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
                 } catch (ClassNotFoundException classNotFoundException) {
-                    classNotFoundException.printStackTrace();
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("classNotFoundError"));
                 }catch (NullPointerException ex){
 
                 }
@@ -278,10 +277,10 @@ public class MainMenu extends JPanel {
                     Response response = client.receive();
                     JOptionPane.showMessageDialog(null, response.localize());
 
-                }catch (IOException ex) {
-
-                } catch (ClassNotFoundException ex) {
-                    ex.printStackTrace();
+                } catch (IOException exception) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
+                } catch (ClassNotFoundException classNotFoundException) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("classNotFoundError"));
                 }
             }
         });
@@ -292,10 +291,10 @@ public class MainMenu extends JPanel {
                     client.send(new Request("help", "", client.getUser()));
                     Response response = client.receive();
                     JOptionPane.showMessageDialog(null, response.localize());
-                } catch (IOException ex) {
-
-                } catch (ClassNotFoundException ex) {
-                    ex.printStackTrace();
+                } catch (IOException exception) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("ioPaneError"));
+                } catch (ClassNotFoundException classNotFoundException) {
+                    JOptionPane.showMessageDialog(null, LocaleBundle.getCurrentBundle().getString("classNotFoundError"));
                 }
 
             }
@@ -421,7 +420,7 @@ public class MainMenu extends JPanel {
         clearButton.setFont(new Font("Arial", Font.PLAIN, 20));
         clearButton.setBackground(new Color(196, 116, 161));
         clearButton.setBorder(new RoundedBorder(10,new Color(161, 35, 106)));
-        mainMenuPanel.add(clearButton, "cell 5 6");
+        //mainMenuPanel.add(clearButton, "cell 5 6");
         //-----replaceIfGreaterButton-----
         replaceIfGreaterButton.setText("replace_if_greater");
         replaceIfGreaterButton.setForeground(new Color(40, 61, 82));
