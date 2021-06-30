@@ -46,11 +46,29 @@ public class DrawSpace extends JPanel {
             }
         }
     }
+    private int index=0;
+    int i=1;
+    public void NewCoordinates(){
+
+        ArrayList<PointWithColor> copy = new ArrayList<>(points);
+        for (PointWithColor point : copy) {
+            point.setX(i);
+            point.setY(i);
+        }
+        index=index+i;
+        if (index>12){
+            i=-1;
+        }
+        if (index<-12){
+            i=1;
+        }
+
+
+    }
 
 
     @Override
     public void paintComponent(Graphics g) {
-        System.out.println("DrawSpace 42 -перерисовка");
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -74,7 +92,7 @@ public class DrawSpace extends JPanel {
             g2.drawLine(maxx+10,zeroy-10,maxx+20,zeroy);
             g2.drawString(point.getText(), point.x - g2.getFont().getSize() / 2, point.y + g2.getFont().getSize() / 2);
         }
-        System.out.println("DrawSpace-59-Нарисовали новые");
+
 
     }
 }

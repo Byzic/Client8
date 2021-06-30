@@ -13,9 +13,14 @@ public class PointWithColor extends Point2D {
     public String text;
     private Flat flat;
     private int key;
+    private int constX;
+    private int constY;
+
     public PointWithColor(int x, int y, Color color, int radius, String text, Flat flat, int key) {
         this.x = x;
         this.y = y;
+        this.constX=x;
+        this.constY=y;
         this.color = color;
         this.radius = radius;
         this.text = text;
@@ -30,6 +35,16 @@ public class PointWithColor extends Point2D {
     }
     public Flat getFlat(){
         return flat;
+    }
+    public void setX(int ind){
+
+        this.x=this.x+ind*2;
+    }
+    public void setY(int ind){
+
+            this.y=(int)(Math.abs(this.x-constX)+constY);
+
+
     }
     @Override
     public double getX() {

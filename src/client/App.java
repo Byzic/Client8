@@ -35,8 +35,8 @@ public class App {
         startMenu = new StartMenu(client);
         show=new Show(client);
         mainMenu=new MainMenu(client);
+        mainFrame.setLocation(300,150);
         mainFrame.setContentPane(startMenu.getStartMenuPanel());
-
         mainFrame.setVisible(true);
 
 

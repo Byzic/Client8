@@ -23,7 +23,7 @@ import java.io.IOException;
 public class MainMenu extends JPanel {
     private JPanel mainMenuPanel;
     private Client client;
-    private User user;
+    private JLabel user;
     private JLabel name;
     private JButton exitButton;
     private JButton helpButton;
@@ -40,10 +40,12 @@ public class MainMenu extends JPanel {
     private JButton showButton;
     private JButton visualizeButton;
     private JButton executeScriptButton;
-
-    public void setUser(User user){
-        this.user=user;
+    public void setUser(User user) {
+        this.client.setUser(user);
+        this.user.setText("User: "+user.getLogin());
     }
+
+
     public MainMenu(Client client) {
         JLabel lable=new JLabel();
         lable.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -305,6 +307,7 @@ public class MainMenu extends JPanel {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - unknown
         mainMenuPanel = new JPanel();
+        user= new JLabel();
         name = new JLabel();
         exitButton=new JButton();
         helpButton=new JButton();
@@ -350,6 +353,12 @@ public class MainMenu extends JPanel {
                         "[25,fill]" +
                         "[35,fill]" +
                         "[35,grow,fill]"));
+        //------user---------
+        user.setText("test");
+        user.setForeground(Color.white);
+        user.setHorizontalAlignment(SwingConstants.CENTER);
+        user.setFont(new Font("Arial", Font.BOLD, 20));
+        mainMenuPanel.add(user, "cell 1 0");
         //---- name ----
         name.setText("Flat");
         name.setHorizontalAlignment(SwingConstants.CENTER);

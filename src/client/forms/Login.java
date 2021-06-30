@@ -51,6 +51,7 @@ public class Login extends JPanel {
                         Response responsee = client.receive();
                         if (response.getResponseBody() != null) user.setColor(responsee.getResponseBody().replaceAll("[\\n]",""));
                         client.setUser(user);
+                        App.mainMenu.setUser(user);
                         App.mainFrame.setContentPane(App.mainMenu.getMainMenuPanel());
                         App.mainFrame.validate();
 

@@ -134,7 +134,6 @@ public class Visualize extends JPanel {
                 int oldY = (int) (double) e.getValue().getCoordinates().getY();
                 int x = (int) ((oldX - minX) * (weight / (maxX - minX)) + (drawSpace.getWidth() * 0.05));
                 int y = (int) (-(oldY - minY) * (height / (maxY - minY))+height + (drawSpace.getHeight() * 0.05));
-                System.out.println("137: "+height);
                 PointWithColor point = new PointWithColor(
                         x,
                         y,
@@ -173,11 +172,25 @@ public class Visualize extends JPanel {
         draw=new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("Visualize 166-поток пошел");
+                long start= System.nanoTime();
+                drawSpace.clearPoints();
+                setObjects();
+                drawSpace.repaint();
                 while (isActive) {
-                    drawSpace.clearPoints();
-                    setObjects();
-                    drawSpace.repaint();
+
+                    long time=0;
+                    long finish= System.nanoTime();
+                    if ((finish-start)/ 1000000000<=8){
+                        drawSpace.NewCoordinates();
+                        drawSpace.repaint();
+
+
+                    }
+                    else{
+                        drawSpace.clearPoints();
+                        setObjects();
+                        drawSpace.repaint();
+                    }
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException ignored) {}

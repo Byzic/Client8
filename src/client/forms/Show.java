@@ -211,7 +211,6 @@ public class Show extends JPanel {
                                     e.getValue().getOwner().getLogin()
                 });}
                 else{
-                    System.out.println(e.getValue().getHouse().getName());
                 model.addRow(new Object[]{
                         e.getValue().getID(),
                         e.getKey(),

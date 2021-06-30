@@ -116,6 +116,22 @@ public class Resource_pol extends ListResourceBundle {
                     {"filter_label3", "Typ filtra"},
                     {"Insert", "Element o podanym kluczu został pomyślnie dodany"},
 
+                    {"Key", "клуч: "},
+                    {"Flat №", "рамни №: "},
+                    {"Date", "(датум на внесување во протоколот "},
+                    {"Name", "Име на сопственикот: "},
+                    {"Place", "Место за меморандуми: "},
+                    {"Area", "Област: "},
+                    {"Rooms", "Број на соби: "},
+                    {"Furnish", "Завршувањето: "},
+                    {"View", "Поглед од прозорецот: "},
+                    {"Transport", "Колку оди транспортот: "},
+                    {"House", "Информации за куќата: "},
+                    {"HouseName", "Комплексно име: "},
+                    {"Year", "година на испорака: "},
+                    {"Floors", "Број на подови: "},
+                    {"null", "null"},
+
 
 
                     //{"login_loginName", "Логин"},
